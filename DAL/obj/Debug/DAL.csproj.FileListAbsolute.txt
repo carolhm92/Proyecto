@@ -36,3 +36,9 @@ C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\DAL\bin\D
 C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\DAL\obj\Debug\DAL.dll
 C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\DAL\obj\Debug\DAL.pdb
+C:\Users\Administrator\source\repos\Clonar\Base\DAL\bin\Debug\DAL.dll.config
+C:\Users\Administrator\source\repos\Clonar\Base\DAL\bin\Debug\DAL.dll
+C:\Users\Administrator\source\repos\Clonar\Base\DAL\bin\Debug\DAL.pdb
+C:\Users\Administrator\source\repos\Clonar\Base\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\Clonar\Base\DAL\obj\Debug\DAL.dll
+C:\Users\Administrator\source\repos\Clonar\Base\DAL\obj\Debug\DAL.pdb

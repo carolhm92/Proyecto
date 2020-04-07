@@ -72,3 +72,19 @@ C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\SistemaCa
 C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\SistemaCarga\obj\Debug\SistemaCarga.csproj.CopyComplete
 C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\SistemaCarga\obj\Debug\SistemaCarga.exe
 C:\Users\carolmhe\Documents\Fidelitas\Progra 5\Proyecto Carol\Proyecto\SistemaCarga\obj\Debug\SistemaCarga.pdb
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\SistemaCarga.exe.config
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\SistemaCarga.exe
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\SistemaCarga.pdb
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\BLL.dll
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\DAL.dll
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\BLL.pdb
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\DAL.pdb
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\bin\Debug\DAL.dll.config
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.frmPrincipal.resources
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.Properties.Resources.resources
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.csproj.GenerateResource.cache
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.csproj.CopyComplete
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.exe
+C:\Users\Administrator\source\repos\Clonar\Base\SistemaCarga\obj\Debug\SistemaCarga.pdb
