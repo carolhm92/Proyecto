@@ -19,7 +19,7 @@ namespace BLL
 
                 return respuesta;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;

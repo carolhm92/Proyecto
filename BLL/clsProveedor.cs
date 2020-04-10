@@ -17,21 +17,21 @@ namespace BLL
                 List<ConsultarProveedorResult> data = dc.ConsultarProveedor().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
 
         }
-        public List<ConsultaProveedorResult> ConsultaProveedor(int Codigo)
+        public ConsultaProveedorResult ConsultaProveedor(int Codigo)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaProveedorResult> data = dc.ConsultaProveedor(Codigo).ToList();
+                ConsultaProveedorResult data = dc.ConsultaProveedor(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -42,20 +42,12 @@ namespace BLL
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarProveedor(IdProveedor,nombreProveedor,Provincia,Canton,Distrito,correo,telefono));
+                int respuesta = Convert.ToInt32(dc.AgregarProveedor(IdProveedor,nombreProveedor,Provincia,Canton,Distrito,correo,telefono));
 
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -65,21 +57,13 @@ namespace BLL
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = dc.ActualizarProveedor(IdProveedor, nombreProveedor, Provincia, Canton, Distrito, correo, telefono);
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                int respuesta = dc.ActualizarProveedor(IdProveedor, nombreProveedor, Provincia, Canton, Distrito, correo, telefono);
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
         public bool EliminarProveedor(int IdProveedor)
@@ -90,9 +74,9 @@ namespace BLL
                 dc.EliminaCliente(IdProveedor);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
 

@@ -17,72 +17,55 @@ namespace BLL
                 List<ConsultarMascotaResult> data = dc.ConsultarMascota().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
 
         }
-        public List<ConsultaMascotaResult> ConsultaMascota(int Codigo)
+        public ConsultaMascotaResult ConsultaMascota(int Codigo)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaMascotaResult> data = dc.ConsultaMascota(Codigo).ToList();
+                ConsultaMascotaResult data = dc.ConsultaMascota(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch
             {
 
                 throw;
             }
 
         }
-        public bool AgregarMascota(string nombreMascota, string especie, string raza, int idCliente)
+        public bool AgregarMascota(string identificacion, string nombreMascota, string especie, string raza, int? idCliente,double? peso)
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarMascota(nombreMascota,especie,raza,idCliente));
-
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                int respuesta = dc.AgregarMascota(identificacion,nombreMascota, especie,raza,idCliente,peso);
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch
             {
 
                 throw;
             }
         }
-        public bool ActualizarMascota(int IdMascota,string nombreMascota, string especie, string raza, int idCliente)
+        public bool ActualizarMascota(int? IdMascota,string nombreMascota, string especie, string raza, int idCliente, double? peso)
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = dc.ActualizarMascota(IdMascota,nombreMascota, especie, raza, idCliente);
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                int respuesta = dc.ActualizarMascota(IdMascota,nombreMascota, especie, raza, idCliente, peso);
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch
             {
-                return false;
+                throw;
             }
         }
-        public bool EliminaMascota(int IdMascota)
+        public bool EliminarMascota(int IdMascota)
         {
             try
             {
@@ -90,9 +73,9 @@ namespace BLL
                 dc.EliminaMascota(IdMascota);
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                return false;
+                throw;
             }
         }
 

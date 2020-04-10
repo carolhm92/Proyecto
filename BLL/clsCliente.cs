@@ -17,69 +17,53 @@ namespace BLL
                 List<ConsultarClienteResult> data = dc.ConsultarCliente().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
 
         }
-        public List<ConsultaClienteResult> ConsultaCliente(int Codigo) 
+        public ConsultaClienteResult ConsultaCliente(int Codigo) 
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaClienteResult> data = dc.ConsultaCliente(Codigo).ToList();
+                ConsultaClienteResult data = dc.ConsultaCliente(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
             }
 
         }
-        public bool AgregarCliente(int IdTipoIdentificacion,string Identificacion, string Nombre, string Apellido1, string Apellido2, string Correo, string Telefono, char Provincia, string Canton, string Distrito, bool Estado) 
+        public bool AgregarCliente(int? IdTipoIdentificacion,string Identificacion, string Nombre, string Apellido1, string Apellido2, string Correo, string Telefono, char Provincia, string Canton, string Distrito) 
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarCliente(IdTipoIdentificacion, Identificacion, Nombre,Apellido1,Apellido2,Correo, Telefono, Provincia,Canton,Distrito,Estado));
+                int respuesta = dc.AgregarCliente(IdTipoIdentificacion, Identificacion, Nombre,Apellido1,Apellido2,Correo, Telefono, Provincia,Canton,Distrito);
 
-                if (respuesta==0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
             }
         }
-        public bool ActualizarCliente(int IdCliente, int IdTipoIdentificacion, string Identificacion, string Nombre, string Apellido1, string Apellido2, string Correo, string Telefono, char Provincia, string Canton, string Distrito, bool Estado) 
+        public bool ActualizarCliente(int? IdCliente, int? IdTipoIdentificacion, string Nombre, string Apellido1, string Apellido2, string Correo, string Telefono, char Provincia, string Canton, string Distrito) 
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = dc.ActualizarCliente(IdCliente, IdTipoIdentificacion, Identificacion, Nombre, Apellido1, Apellido2, Correo, Telefono, Provincia, Canton, Distrito, Estado);
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                int respuesta = dc.ActualizarCliente(IdCliente, IdTipoIdentificacion, Nombre, Apellido1, Apellido2, Correo, Telefono, Provincia, Canton, Distrito);
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
         public bool EliminarCliente(int IdCliente)
@@ -90,9 +74,9 @@ namespace BLL
                 dc.EliminaCliente(IdCliente);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
 

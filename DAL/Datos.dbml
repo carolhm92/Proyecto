@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProyectoCarol" Class="DatosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=ProyectoCarol;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="ProyectoCarolConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=ProyectoCarol;Integrated Security=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="ProyectoCarolConnectionString1" Provider="System.Data.SqlClient" />
   <Function Name="dbo.ActualizarCliente" Method="ActualizarCliente">
     <Parameter Name="IdCliente" Parameter="idCliente" Type="System.Int32" DbType="Int" />
     <Parameter Name="IdTipoIdentificacion" Parameter="idTipoIdentificacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Apellido1" Parameter="apellido1" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Apellido2" Parameter="apellido2" Type="System.String" DbType="VarChar(50)" />
@@ -12,14 +11,21 @@
     <Parameter Name="Provincia" Parameter="provincia" Type="System.Char" DbType="Char(1)" />
     <Parameter Name="Canton" Parameter="canton" Type="System.String" DbType="Char(2)" />
     <Parameter Name="Distrito" Parameter="distrito" Type="System.String" DbType="Char(2)" />
-    <Parameter Name="Estado" Parameter="estado" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.RegistrarBitacora" Method="RegistrarBitacora">
+    <Parameter Name="Controlador" Parameter="controlador" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Metodo" Parameter="metodo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Mensaje" Parameter="mensaje" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Tipo" Parameter="tipo" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ActualizarInstitucion" Method="ActualizarInstitucion">
     <Parameter Name="IdInstitucion" Parameter="idInstitucion" Type="System.Int32" DbType="Int" />
     <Parameter Name="Institucion" Parameter="institucion" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="IdTipoIdentitifcacion" Parameter="idTipoIdentitifcacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Identitifcacion" Parameter="identitifcacion" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(15)" />
     <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(500)" />
     <Return Type="System.Int32" />
@@ -30,6 +36,7 @@
     <Parameter Name="Especie" Parameter="especie" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Raza" Parameter="raza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="IdCliente" Parameter="idCliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Peso" Parameter="peso" Type="System.Double" DbType="Float" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ActualizarProducto" Method="ActualizarProducto">
@@ -53,7 +60,6 @@
   <Function Name="dbo.ActualizarTipoIdentificacion" Method="ActualizarTipoIdentificacion">
     <Parameter Name="IdTipoIdentificacion" Parameter="idTipoIdentificacion" Type="System.Int32" DbType="Int" />
     <Parameter Name="TipoIdentificacion" Parameter="tipoIdentificacion" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Estado" Parameter="estado" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ActualizarTratamiento" Method="ActualizarTratamiento">
@@ -73,7 +79,6 @@
     <Parameter Name="Provincia" Parameter="provincia" Type="System.Char" DbType="Char(1)" />
     <Parameter Name="Canton" Parameter="canton" Type="System.String" DbType="Char(2)" />
     <Parameter Name="Distrito" Parameter="distrito" Type="System.String" DbType="Char(2)" />
-    <Parameter Name="Estado" Parameter="estado" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.AgregarInstitucion" Method="AgregarInstitucion">
@@ -88,10 +93,12 @@
     </ElementType>
   </Function>
   <Function Name="dbo.AgregarMascota" Method="AgregarMascota">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(20)" />
     <Parameter Name="NombreMascota" Parameter="nombreMascota" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Especie" Parameter="especie" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Raza" Parameter="raza" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="IdCliente" Parameter="idCliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="peso" Type="System.Double" DbType="Float" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.AgregarPersona" Method="AgregarPersona">
@@ -123,13 +130,12 @@
   </Function>
   <Function Name="dbo.AgregarTipoIdentificacion" Method="AgregarTipoIdentificacion">
     <Parameter Name="TipoIdentificacion" Parameter="tipoIdentificacion" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Estado" Parameter="estado" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.AgregarTratamiento" Method="AgregarTratamiento">
-    <Parameter Name="IdTratamiento" Parameter="idTratamiento" Type="System.Int32" DbType="Int" />
     <Parameter Name="NombreTratamiento" Parameter="nombreTratamiento" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Costo" Parameter="costo" Type="System.Double" DbType="Float" />
+    <Parameter Name="IdMascota" Parameter="idMascota" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.Cantones" Method="Cantones">
@@ -167,6 +173,7 @@
       <Column Name="Identificacion" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Telefono" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="Direccion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultaMascota" Method="ConsultaMascota">
@@ -179,6 +186,7 @@
       <Column Name="IdCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Peso" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Identificacion" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultaPersona" Method="ConsultaPersona">
@@ -201,6 +209,7 @@
       <Column Name="CostoProducto" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="IdProveedor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultaProveedor" Method="ConsultaProveedor">
@@ -213,6 +222,7 @@
       <Column Name="Distrito" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="Telefono" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
       <Column Name="Correo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultarCliente" Method="ConsultarCliente">
@@ -240,6 +250,7 @@
       <Column Name="Identificacion" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Telefono" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="Direccion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultarMascota" Method="ConsultarMascota">
@@ -251,6 +262,7 @@
       <Column Name="IdCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Peso" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Identificacion" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultarProducto" Method="ConsultarProducto">
@@ -260,6 +272,7 @@
       <Column Name="CostoProducto" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="IdProveedor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultarProveedor" Method="ConsultarProveedor">
@@ -271,6 +284,7 @@
       <Column Name="Distrito" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="Telefono" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
       <Column Name="Correo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultarTiposIdentificacion" Method="ConsultarTiposIdentificacion">
@@ -286,10 +300,11 @@
       <Column Name="NombreTratamiento" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Costo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="IdMascota" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.ConsultaTiposIdentificacion" Method="ConsultaTiposIdentificacion">
-    <Parameter Name="TipoIdentificacion" Parameter="tipoIdentificacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdTipoIdentificacion" Parameter="idTipoIdentificacion" Type="System.Int32" DbType="Int" />
     <ElementType Name="ConsultaTiposIdentificacionResult">
       <Column Name="IdTipoIdentificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
@@ -303,6 +318,7 @@
       <Column Name="NombreTratamiento" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Costo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="IdMascota" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.Distritos" Method="Distritos">
@@ -358,13 +374,5 @@
       <Column Name="Cod" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.RegistrarBitacora" Method="RegistrarBitacora">
-    <Parameter Name="Controlador" Parameter="controlador" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Metodo" Parameter="metodo" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Mensaje" Parameter="mensaje" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Tipo" Parameter="tipo" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
   </Function>
 </Database>

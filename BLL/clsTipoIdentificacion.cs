@@ -17,57 +17,56 @@ namespace BLL
                 List<ConsultarTiposIdentificacionResult> data = dc.ConsultarTiposIdentificacion().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
 
         }
-        public List<ConsultaTiposIdentificacionResult> ConsultaTipoIdentificacion(int Codigo) 
+        public ConsultaTiposIdentificacionResult ConsultaTipoIdentificacion(int Codigo) 
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaTiposIdentificacionResult> data = dc.ConsultaTiposIdentificacion(Codigo).ToList();
+                ConsultaTiposIdentificacionResult data = dc.ConsultaTiposIdentificacion(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
             }
 
         }
-        public int AgregarTipoIdentificacion(string TipoIdentificacion,bool Estado) 
+        public bool AgregarTipoIdentificacion(string TipoIdentificacion) 
         {
             try
             {
-                int respuesta = 0;
+                int respuesta = -1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarTipoIdentificacion(TipoIdentificacion, Estado));
-
-                return respuesta;
+                respuesta = dc.AgregarTipoIdentificacion(TipoIdentificacion);
+                return respuesta == -1;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
             }
         }
-        public bool ActualizarInstucion(int IdTipoIdentificacion,string TipoIdentificacion, bool Estado) 
+        public bool ActualizarTipoIdentificacion(int IdTipoIdentificacion,string TipoIdentificacion) 
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                dc.ActualizarTipoIdentificacion(IdTipoIdentificacion, TipoIdentificacion, Estado);
+                dc.ActualizarTipoIdentificacion(IdTipoIdentificacion, TipoIdentificacion);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
-        public bool EliminarInstucion(int IdTipoIdentificacion)
+        public bool EliminarTipoIdentificacion(int IdTipoIdentificacion)
         {
             try
             {
@@ -75,9 +74,9 @@ namespace BLL
                 dc.EliminaTiposIdentificacion(IdTipoIdentificacion);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
 

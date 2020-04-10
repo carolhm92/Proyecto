@@ -42,5 +42,15 @@ namespace DAL.Properties {
                 return ((string)(this["ProyectoCarolConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=ProyectoCarol;Integrated Security=True")]
+        public string ProyectoCarolConnectionString1 {
+            get {
+                return ((string)(this["ProyectoCarolConnectionString1"]));
+            }
+        }
     }
 }

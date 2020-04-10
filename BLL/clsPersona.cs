@@ -9,15 +9,15 @@ namespace BLL
 {
     public class clsPersona
     {
-        public List<ConsultaPersonaResult>ConsultaPersona(string Cedula) 
+        public ConsultaPersonaResult ConsultaPersona(string Cedula) 
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaPersonaResult> data = dc.ConsultaPersona(Cedula).ToList();
+                ConsultaPersonaResult data = dc.ConsultaPersona(Cedula).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch
             {
 
                 throw;
@@ -32,10 +32,10 @@ namespace BLL
                 dc.AgregarPersona(Cedula, Sexo, Nombre, ApellidoP, ApellidoM, Direccion);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
-                return false;
+                throw;
             }
         }
     }

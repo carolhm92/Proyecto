@@ -17,21 +17,21 @@ namespace BLL
                 List<ConsultarProductoResult> data = dc.ConsultarProducto().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
 
         }
-        public List<ConsultaProductoResult> ConsultaProducto(int Codigo)
+        public ConsultaProductoResult ConsultaProducto(int Codigo)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaProductoResult> data = dc.ConsultaProducto(Codigo).ToList();
+                ConsultaProductoResult data = dc.ConsultaProducto(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch
             {
 
                 throw;
@@ -42,20 +42,12 @@ namespace BLL
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarProducto(idProducto,nombreProducto,costoProducto,idProveedor,cantidad));
+                int respuesta = Convert.ToInt32(dc.AgregarProducto(idProducto,nombreProducto,costoProducto,idProveedor,cantidad));
 
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch
             {
 
                 throw;
@@ -65,21 +57,13 @@ namespace BLL
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = dc.ActualizarProducto(IdProducto, nombreProducto, costoProducto, idProveedor, cantidad);
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                int respuesta = dc.ActualizarProducto(IdProducto, nombreProducto, costoProducto, idProveedor, cantidad);
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
         public bool EliminarProducto(int IdProducto)
@@ -90,9 +74,9 @@ namespace BLL
                 dc.EliminaCliente(IdProducto);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
 

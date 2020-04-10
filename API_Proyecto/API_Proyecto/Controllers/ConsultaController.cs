@@ -46,7 +46,7 @@ namespace API_Proyecto.Controllers
 
             //var Cedula = jsonObjet.Identificacion.Value;
 
-            var Cedula = persona.Identificacion;
+            var Cedula = persona.Cedula;
             if (string.IsNullOrEmpty(Cedula))
             {
                 return NotFound();

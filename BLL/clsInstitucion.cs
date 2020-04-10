@@ -17,38 +17,36 @@ namespace BLL
                 List<ConsultarInstitucionResult> data = dc.ConsultarInstitucion().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
 
         }
-        public List<ConsultaInstitucionResult> ConsultaInstitucion(int Codigo) 
+        public ConsultaInstitucionResult ConsultaInstitucion(int Codigo) 
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaInstitucionResult> data = dc.ConsultaInstitucion(Codigo).ToList();
+                ConsultaInstitucionResult data = dc.ConsultaInstitucion(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
             }
 
         }
-        public int AgregarInstitucion(int IdInstitucion, string Institucion,int IdTipoIdentificacion, string Identificacion,string Telefono, string Direccion) 
+        public bool AgregarInstitucion(int IdInstitucion, string Institucion,int IdTipoIdentificacion, string Identificacion,string Telefono, string Direccion) 
         {
             try
             {
-                int respuesta = 0;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarInstitucion(IdInstitucion, Institucion, IdTipoIdentificacion, Identificacion, Telefono, Direccion));
-
-                return respuesta;
+                dc.AgregarInstitucion(IdInstitucion, Institucion, IdTipoIdentificacion, Identificacion, Telefono, Direccion);
+                return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -62,9 +60,9 @@ namespace BLL
                 dc.ActualizarInstitucion(IdInstitucion, Institucion, IdTipoIdentificacion, Identificacion, Telefono, Direccion);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
         public bool EliminarInstitucion(int IdInstitucion)
@@ -75,9 +73,9 @@ namespace BLL
                 dc.EliminaInstitucion(IdInstitucion);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
 

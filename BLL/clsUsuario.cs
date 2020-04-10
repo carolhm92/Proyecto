@@ -17,7 +17,7 @@ namespace BLL
                 List<ExisteUsuarioResult> data = dc.ExisteUsuario(Usuario,Clave).ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }

@@ -106,7 +106,7 @@ namespace Consola.Controllers
                     clsCliente Objcliente = new clsCliente();
                     bool Resultado = Objcliente.AgregarCliente(cliente.IdTipoIdentificacion, cliente.Identificacion,
                         cliente.Nombre, cliente.Apellido1, cliente.Apellido2, cliente.Correo, cliente.Telefono,
-                        cliente.Provincia, cliente.Canton, cliente.Distrito, cliente.Estado);
+                        cliente.Provincia, cliente.Canton, cliente.Distrito);
 
                     if (Resultado)
                     {
@@ -170,22 +170,22 @@ namespace Consola.Controllers
                 var dato = cliente.ConsultaCliente(id);
 
                 Cliente modelo = new Cliente();
-                modelo.IdCliente = dato[0].IdCliente;
-                modelo.IdTipoIdentificacion = dato[0].IdTipoIdentificacion;
-                modelo.Identificacion = dato[0].Identificacion;
-                modelo.Nombre = dato[0].Nombre;
-                modelo.Apellido1 = dato[0].Apellido1;
-                modelo.Apellido2 = dato[0].Apellido2;
-                modelo.Correo = dato[0].Correo;
-                modelo.Telefono = dato[0].Telefono;
-                modelo.Provincia = dato[0].Provincia;
-                modelo.Canton = dato[0].Canton;
-                modelo.Distrito = dato[0].Distrito;
-                modelo.Estado = dato[0].Estado;
+                modelo.IdCliente = dato.IdCliente;
+                modelo.IdTipoIdentificacion = dato.IdTipoIdentificacion;
+                modelo.Identificacion = dato.Identificacion;
+                modelo.Nombre = dato.Nombre;
+                modelo.Apellido1 = dato.Apellido1;
+                modelo.Apellido2 = dato.Apellido2;
+                modelo.Correo = dato.Correo;
+                modelo.Telefono = dato.Telefono;
+                modelo.Provincia = dato.Provincia;
+                modelo.Canton = dato.Canton;
+                modelo.Distrito = dato.Distrito;
+                modelo.Estado = dato.Estado;
 
                 ViewBag.ListaProvincias = CargaProvincias();
-                ViewBag.ListaCantones = CargaCanton(dato[0].Provincia);
-                ViewBag.ListaDistritos = CargaDistrito(dato[0].Provincia, dato[0].Canton);
+                ViewBag.ListaCantones = CargaCanton(dato.Provincia);
+                ViewBag.ListaDistritos = CargaDistrito(dato.Provincia, dato.Canton);
                 ViewBag.ListaTiposIdentificacion = tiposIdentificacion.ConsultarTipoIdentificacion();
                 return View(modelo);
             }
@@ -209,9 +209,9 @@ namespace Consola.Controllers
 
                 }
                 clsCliente ObjCliente = new clsCliente();
-                bool Resultado = ObjCliente.ActualizarCliente(cliente.IdCliente,cliente.IdTipoIdentificacion, cliente.Identificacion,
+                bool Resultado = ObjCliente.ActualizarCliente(cliente.IdCliente,cliente.IdTipoIdentificacion,
                         cliente.Nombre, cliente.Apellido1, cliente.Apellido2, cliente.Correo, cliente.Telefono,
-                        cliente.Provincia, cliente.Canton, cliente.Distrito, cliente.Estado);
+                        cliente.Provincia, cliente.Canton, cliente.Distrito);
 
                 if (Resultado)
                 {
