@@ -37,11 +37,8 @@ namespace Consola
                 .Include(ltecomponents + "bootstrap-daterangepicker/daterangepicker.js")
                 .Include(ltecomponents + "bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")
                 .Include(ltecomponents + "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js")
-                .Include(lteplugins + "bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")
-                .Include(ltecomponents + "jquery-slimscroll/jquery.slimscroll.min.js")
                 .Include(ltecomponents + "fastclick/lib/fastclick.js")
                 .Include(lte + "js/adminlte.min.js")
-                .Include(lte + "js/demo.js")
                 .Include(lteplugins + "bootstrap-slider/bootstrap-slider.js")
                 .Include(ltecomponents + "select2/dist/js/select2.full.min.js")
                 .Include(lteplugins + "input-mask/jquery.inputmask.js")
@@ -58,7 +55,6 @@ namespace Consola
                 .Include(lte + "js/pages/dashboard2.js"));            
 
             bundles.Add(new StyleBundle("~/Content/css")
-                .Include("~/Content/bootstrap.css")
                 .Include(ltecomponents + "bootstrap/dist/css/bootstrap.min.css")
                 .Include(ltecomponents + "font-awesome/css/font-awesome.min.css")
                 .Include(ltecomponents + "Ionicons/css/ionicons.min.css")

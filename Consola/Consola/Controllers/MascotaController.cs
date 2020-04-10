@@ -13,91 +13,179 @@ using System.Net.Http.Headers;
 using System.Configuration;
 using Newtonsoft.Json;
 using System.Net;
+using System.Threading.Tasks;
+using Consola.Helpers;
 
 namespace Consola.Controllers
 {
+    [SessionManage]
     public class MascotaController : Controller
     {
-
-        clsMascota Mascota = new clsMascota();
-
-
+        clsBitacora bitacora = new clsBitacora();
         // GET: Mascota
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            ApiCall api = new ApiCall(Session);
+            try
+            {
+                var response = await api.GetAsync("/api/Mascota");
+                if (response.IsSuccessStatusCode)
+                {
+                    var datastring = await response.Content.ReadAsStringAsync();
+                    var mascotas = JsonConvert.DeserializeObject<List<Mascota>>(datastring);
+                    return View(mascotas);
+                }
+            }
+            catch (Exception ex)
+            {
+                bitacora.AgregarBitacora("Mascota", "Index", ex.Message, Session["US"].ToString(), 2);
+                return View(new List<Mascota>());
+            }
+            // errores
+            return View(new List<Mascota>());
         }
 
         // GET: Mascota/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            ApiCall api = new ApiCall(Session);
+            var result = await api.GetAsync("/api/Mascota/" + id);
+            Mascota mascota = null;
+            if (result.IsSuccessStatusCode)
+            {
+                var datastring = result.Content.ReadAsStringAsync().Result;
+                mascota = JsonConvert.DeserializeObject<Mascota>(datastring);
+            }
+            if (mascota == null)
+            {
+                bitacora.AgregarBitacora("Mascota", "Details", "No existe", Session["US"].ToString(), 2);
+                return View(new Mascota());
+            }
+            return View(mascota);
         }
 
         // GET: Mascota/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            ApiCall api = new ApiCall(Session);
+            List<Cliente> clientes = new List<Cliente>();
+            var resultclient = await api.GetAsync("/api/Client");
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
+            }
+            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
             return View();
         }
 
         // POST: Mascota/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Mascota mascota)
         {
-            try
+            ApiCall api = new ApiCall(Session);
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                var result = await api.PostAsync("/api/Mascota", mascota);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
-            catch
+            List<Cliente> clientes = new List<Cliente>();
+            var resultclient = await api.GetAsync("/api/Client");
+            if (resultclient.IsSuccessStatusCode)
             {
-                return View();
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
             }
+            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            bitacora.AgregarBitacora("Mascota", "Create", "No se creo", Session["US"].ToString(), 2);
+            return View(mascota);
         }
 
         // GET: Mascota/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            ApiCall api = new ApiCall(Session);
+            var result = await api.GetAsync("/api/Mascota/" + id);
+            Mascota mascota = null;
+            List<Cliente> clientes = new List<Cliente>();
+            var resultclient = await api.GetAsync("/api/Client");
+            string datastring;
+            if (resultclient.IsSuccessStatusCode)
+            {
+                datastring = resultclient.Content.ReadAsStringAsync().Result;
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
+            }
+            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            if (result.IsSuccessStatusCode)
+            {
+                datastring = result.Content.ReadAsStringAsync().Result;
+                mascota = JsonConvert.DeserializeObject<Mascota>(datastring);
+            }
+            if (mascota == null)
+            {
+                bitacora.AgregarBitacora("Mascota", "Edit", "No se encontro", Session["US"].ToString(), 2);
+                return HttpNotFound();
+            }
+            return View(mascota);
         }
 
         // POST: Mascota/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(Mascota mascota)
         {
-            try
+            List<Cliente> clientes = new List<Cliente>();
+            ApiCall api = new ApiCall(Session);
+            string datastring;
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var result = await api.PutAsync("/api/Mascota/" + mascota.IdMascota, mascota);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
-            catch
+            var resultclient = await api.GetAsync("/api/Client");
+            if (resultclient.IsSuccessStatusCode)
             {
-                return View();
+                datastring = resultclient.Content.ReadAsStringAsync().Result;
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
             }
+            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            bitacora.AgregarBitacora("Mascota", "Edit", "No se edito", Session["US"].ToString(), 2);
+            return View(mascota);
         }
 
         // GET: Mascota/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            ApiCall api = new ApiCall(Session);
+            var result = await api.GetAsync("/api/Mascota/" + id);
+            Mascota mascota = null;
+            if (result.IsSuccessStatusCode)
+            {
+                var datastring = result.Content.ReadAsStringAsync().Result;
+                mascota = JsonConvert.DeserializeObject<Mascota>(datastring);
+            }
+            if (mascota == null)
+            {
+                bitacora.AgregarBitacora("Mascota", "Delete", "No se encontro", Session["US"].ToString(), 2);
+                return HttpNotFound();
+            }
+            return View(mascota);
         }
 
         // POST: Mascota/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
+            ApiCall api = new ApiCall(Session);
+            var result = await api.DeleteAsync("/api/Mascota/" + id);
+            if (result.IsSuccessStatusCode)
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            bitacora.AgregarBitacora("Mascota", "Delete", "No se elimino", Session["US"].ToString(), 2);
+            return HttpNotFound();
         }
     }
 }

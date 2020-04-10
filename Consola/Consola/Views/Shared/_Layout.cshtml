@@ -20,22 +20,25 @@
         @Html.Partial("_Header")
 
         @Html.Partial("_Sidebar")
-
-        @RenderBody()
-
+        <div class="content-wrapper">
+            <div class="container">
+                <br />
+                @RenderBody()
+            </div>
+        </div>
         @Html.Partial("_Footer")
 
         @Html.Partial("_Aside")
-        <!-- Add the sidebar's background. This div must be placed
+            <!-- Add the sidebar's background. This div must be placed
         immediately after the control sidebar -->
-        <div class="control-sidebar-bg"></div>
-    </div>
+            <div class="control-sidebar-bg"></div>
+        </div>
 
 
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/lib")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/lib")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
