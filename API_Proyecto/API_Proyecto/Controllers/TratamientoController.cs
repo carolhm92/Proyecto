@@ -12,6 +12,7 @@ using DAL;
 
 namespace API_Proyecto.Controllers
 {
+    [Authorize]
     public class TratamientoController : ApiController
     {
         private clsTratamiento db = new clsTratamiento();
