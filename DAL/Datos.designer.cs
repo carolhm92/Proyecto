@@ -22,7 +22,7 @@ namespace DAL
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ProyectoCarol")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ProyectoVeterinaria")]
 	public partial class DatosDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,7 +33,7 @@ namespace DAL
     #endregion
 		
 		public DatosDataContext() : 
-				base(global::DAL.Properties.Settings.Default.ProyectoCarolConnectionString1, mappingSource)
+				base(global::DAL.Properties.Settings.Default.ProyectoVeterinariaConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -62,17 +62,17 @@ namespace DAL
 			OnCreated();
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarCita")]
+		public int ActualizarCita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Asunto", DbType="NVarChar(100)")] string asunto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="NVarChar(200)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Inicio", DbType="DateTime")] System.Nullable<System.DateTime> inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fin", DbType="DateTime")] System.Nullable<System.DateTime> fin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ColorFondo", DbType="NVarChar(200)")] string colorFondo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DiaCompleto", DbType="Bit")] System.Nullable<bool> diaCompleto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCita, asunto, descripcion, inicio, fin, colorFondo, diaCompleto);
+			return ((int)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarCliente")]
 		public int ActualizarCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido1", DbType="VarChar(50)")] string apellido1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido2", DbType="VarChar(50)")] string apellido2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente, idTipoIdentificacion, nombre, apellido1, apellido2, correo, telefono, provincia, canton, distrito);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.RegistrarBitacora")]
-		public int RegistrarBitacora([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Controlador", DbType="VarChar(50)")] string controlador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Metodo", DbType="VarChar(50)")] string metodo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mensaje", DbType="VarChar(MAX)")] string mensaje, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="Int")] System.Nullable<int> tipo)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), controlador, metodo, mensaje, usuario, tipo);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -115,6 +115,13 @@ namespace DAL
 		public int ActualizarTratamiento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTratamiento", DbType="Int")] System.Nullable<int> idTratamiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreTratamiento", DbType="VarChar(50)")] string nombreTratamiento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Costo", DbType="Float")] System.Nullable<double> costo)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTratamiento, nombreTratamiento, costo);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarCita")]
+		public int AgregarCita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Asunto", DbType="NVarChar(100)")] string asunto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="NVarChar(200)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Inicio", DbType="DateTime")] System.Nullable<System.DateTime> inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fin", DbType="DateTime")] System.Nullable<System.DateTime> fin, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ColorFondo", DbType="NVarChar(200)")] string colorFondo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DiaCompleto", DbType="Bit")] System.Nullable<bool> diaCompleto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), asunto, descripcion, inicio, fin, colorFondo, diaCompleto);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -181,6 +188,13 @@ namespace DAL
 			return ((ISingleResult<CantonesResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaCita")]
+		public ISingleResult<ConsultaCitaResult> ConsultaCita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCita);
+			return ((ISingleResult<ConsultaCitaResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaCliente")]
 		public ISingleResult<ConsultaClienteResult> ConsultaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente)
 		{
@@ -221,6 +235,13 @@ namespace DAL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor);
 			return ((ISingleResult<ConsultaProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCita")]
+		public ISingleResult<ConsultarCitaResult> ConsultarCita()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarCitaResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCliente")]
@@ -328,6 +349,13 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCita")]
+		public int EliminarCita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCita);
+			return ((int)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaTiposIdentificacion")]
 		public int EliminaTiposIdentificacion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoIdentificacion", DbType="Int")] System.Nullable<int> tipoIdentificacion)
 		{
@@ -354,6 +382,13 @@ namespace DAL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ProvinciasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.RegistrarBitacora")]
+		public int RegistrarBitacora([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Controlador", DbType="VarChar(50)")] string controlador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Metodo", DbType="VarChar(50)")] string metodo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mensaje", DbType="VarChar(MAX)")] string mensaje, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="Int")] System.Nullable<int> tipo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), controlador, metodo, mensaje, usuario, tipo);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -440,6 +475,158 @@ namespace DAL
 				if ((this._Nombre != value))
 				{
 					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultaCitaResult
+	{
+		
+		private int _IdCita;
+		
+		private System.DateTime _Inicio;
+		
+		private System.DateTime _Fin;
+		
+		private bool _Estado;
+		
+		private string _ColorFondo;
+		
+		private bool _DiaCompleto;
+		
+		private string _Asunto;
+		
+		private string _Descripcion;
+		
+		public ConsultaCitaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCita", DbType="Int NOT NULL")]
+		public int IdCita
+		{
+			get
+			{
+				return this._IdCita;
+			}
+			set
+			{
+				if ((this._IdCita != value))
+				{
+					this._IdCita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio", DbType="Date NOT NULL")]
+		public System.DateTime Inicio
+		{
+			get
+			{
+				return this._Inicio;
+			}
+			set
+			{
+				if ((this._Inicio != value))
+				{
+					this._Inicio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin", DbType="Date NOT NULL")]
+		public System.DateTime Fin
+		{
+			get
+			{
+				return this._Fin;
+			}
+			set
+			{
+				if ((this._Fin != value))
+				{
+					this._Fin = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorFondo", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string ColorFondo
+		{
+			get
+			{
+				return this._ColorFondo;
+			}
+			set
+			{
+				if ((this._ColorFondo != value))
+				{
+					this._ColorFondo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaCompleto", DbType="Bit NOT NULL")]
+		public bool DiaCompleto
+		{
+			get
+			{
+				return this._DiaCompleto;
+			}
+			set
+			{
+				if ((this._DiaCompleto != value))
+				{
+					this._DiaCompleto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Asunto", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Asunto
+		{
+			get
+			{
+				return this._Asunto;
+			}
+			set
+			{
+				if ((this._Asunto != value))
+				{
+					this._Asunto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
 				}
 			}
 		}
@@ -1370,6 +1557,158 @@ namespace DAL
 				if ((this._Estado != value))
 				{
 					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarCitaResult
+	{
+		
+		private int _IdCita;
+		
+		private System.DateTime _Inicio;
+		
+		private System.DateTime _Fin;
+		
+		private bool _Estado;
+		
+		private string _ColorFondo;
+		
+		private bool _DiaCompleto;
+		
+		private string _Asunto;
+		
+		private string _Descripcion;
+		
+		public ConsultarCitaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCita", DbType="Int NOT NULL")]
+		public int IdCita
+		{
+			get
+			{
+				return this._IdCita;
+			}
+			set
+			{
+				if ((this._IdCita != value))
+				{
+					this._IdCita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Inicio", DbType="Date NOT NULL")]
+		public System.DateTime Inicio
+		{
+			get
+			{
+				return this._Inicio;
+			}
+			set
+			{
+				if ((this._Inicio != value))
+				{
+					this._Inicio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fin", DbType="Date NOT NULL")]
+		public System.DateTime Fin
+		{
+			get
+			{
+				return this._Fin;
+			}
+			set
+			{
+				if ((this._Fin != value))
+				{
+					this._Fin = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorFondo", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string ColorFondo
+		{
+			get
+			{
+				return this._ColorFondo;
+			}
+			set
+			{
+				if ((this._ColorFondo != value))
+				{
+					this._ColorFondo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaCompleto", DbType="Bit NOT NULL")]
+		public bool DiaCompleto
+		{
+			get
+			{
+				return this._DiaCompleto;
+			}
+			set
+			{
+				if ((this._DiaCompleto != value))
+				{
+					this._DiaCompleto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Asunto", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Asunto
+		{
+			get
+			{
+				return this._Asunto;
+			}
+			set
+			{
+				if ((this._Asunto != value))
+				{
+					this._Asunto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
 				}
 			}
 		}
