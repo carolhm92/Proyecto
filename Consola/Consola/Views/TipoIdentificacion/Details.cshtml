@@ -1,0 +1,34 @@
+﻿@model Consola.Models.TipoIdentificacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TipoIdentificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoIdentificacion1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoIdentificacion1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdTipoIdentificacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -12,6 +12,7 @@ using DAL;
 
 namespace API_Proyecto.Controllers
 {
+    [Authorize]
     public class MascotaController : ApiController
     {
         private clsMascota db = new clsMascota();
@@ -51,7 +52,7 @@ namespace API_Proyecto.Controllers
             bool result;
             try
             {
-                result = db.ActualizarMascota(mascota.IdMascota,mascota.NombreMascota,mascota.Especie,mascota.Raza,mascota.IdCliente,mascota.Peso);
+                result = db.ActualizarMascota(mascota.IdMascota,mascota.NombreMascota,mascota.Especie,mascota.Raza,mascota.IdCliente.Value,mascota.Peso);
             }
             catch (Exception ex)
             {
