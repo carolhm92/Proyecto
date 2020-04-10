@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsBitacora.cs" />
+    <Compile Include="clsCita.cs" />
     <Compile Include="clsInformacion.cs" />
     <Compile Include="clsMascota.cs" />
     <Compile Include="clsProveedor.cs" />

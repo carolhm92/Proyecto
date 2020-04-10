@@ -1,4 +1,5 @@
 ﻿using API_Proyecto.Models;
+using BLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,16 +32,14 @@ namespace API_Proyecto.Controllers
         [Route("authenticate")]
         public IHttpActionResult Authenticated(LoginRequest login)
         {
-            if (login==null)
+            if (login == null)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
-            var clave = Seguridad.Encriptar("123");
-            var desClave = Seguridad.DesEncriptar(clave);
-            //Validamos las credenciales correctas, solooooo!!!! para el demo.
-            bool isCredentialValid = (login.Password == "123456");
+            clsUsuario Objusuario = new clsUsuario();
+            var usuario = Objusuario.ConsultarUsuario(login.UserName, login.Password).Where(x => x.Estado == true);
 
-            if (isCredentialValid)
+            if (usuario.Count() > 0)
             {
                 var token = TokenGenerator.GenerateTokenJwt(login.UserName);
                 return Ok(token);
