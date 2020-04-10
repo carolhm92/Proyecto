@@ -209,6 +209,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tools\Seguridad.cs" />
     <Compile Include="Tools\Utilerias.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ using DAL;
 
 namespace API_Proyecto.Controllers
 {
+    [Authorize]
     public class TipoIdentificacionController : ApiController
     {
         private clsTipoIdentificacion db = new clsTipoIdentificacion();

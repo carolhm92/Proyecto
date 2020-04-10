@@ -12,6 +12,7 @@ using DAL;
 
 namespace API_Proyecto.Controllers
 {
+    [Authorize]
     public class InstitucionController : ApiController
     {
         private clsInstitucion db = new clsInstitucion();

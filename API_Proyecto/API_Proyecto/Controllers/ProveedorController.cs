@@ -12,6 +12,7 @@ using DAL;
 
 namespace API_Proyecto.Controllers
 {
+    [Authorize]
     public class ProveedorController : ApiController
     {
         private clsProveedor db = new clsProveedor();
