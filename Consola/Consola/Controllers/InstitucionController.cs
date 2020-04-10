@@ -15,11 +15,11 @@ namespace Consola.Controllers
         // GET: Institucion
         public ActionResult Consultar()
         {
-            string Cedula = "11111111";//Session["Cedula"].ToString();
+            string Cedula = Session["Cedula"].ToString();
             try
             {
                 var resultado=institucion.ConsultarInstitucion();
-                //bitacora.AgregarBitacora("Institucion", "Consultar", "ConsultaExitosa", Cedula, 1);
+                bitacora.AgregarBitacora("Institucion", "Consultar", "ConsultaExitosa", Cedula, 1);
                 return View(resultado);
             }
             catch (Exception ex)
