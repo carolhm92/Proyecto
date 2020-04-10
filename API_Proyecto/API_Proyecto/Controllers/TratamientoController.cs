@@ -51,7 +51,7 @@ namespace API_Proyecto.Controllers
             bool result;
             try
             {
-                result = db.ActualizarTratamiento(tratamiento.IdTratamiento, tratamiento.NombreTratamiento, tratamiento.Costo);
+                result = db.ActualizarTratamiento(tratamiento.IdTratamiento, tratamiento.NombreTratamiento, tratamiento.Costo.Value);
             }
             catch (Exception ex)
             {
