@@ -14,120 +14,88 @@ namespace API_Proyecto.Controllers
 {
     public class TratamientoController : ApiController
     {
-        //private ProyectoCarolEntities db = new ProyectoCarolEntities();
+        private clsTratamiento db = new clsTratamiento();
 
-        //// GET: api/Tratamiento
-        //public IQueryable<Tratamiento> GetTratamiento()
-        //{
-        //    return db.Tratamiento;
-        //}
+        // GET: api/Tratamiento
+        public IEnumerable<ConsultarTratamientoResult> GetTratamiento()
+        {
+            return db.ConsultarTratamiento();
+        }
 
-        //// GET: api/Tratamiento/5
-        //[ResponseType(typeof(Tratamiento))]
-        //public IHttpActionResult GetTratamiento(int id)
-        //{
-        //    Tratamiento tratamiento = db.Tratamiento.Find(id);
-        //    if (tratamiento == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: api/Tratamiento/5
+        [ResponseType(typeof(ConsultaTratamientoResult))]
+        public IHttpActionResult GetTratamiento(int id)
+        {
+            ConsultaTratamientoResult tratamiento = db.ConsultaTratamiento(id);
+            if (tratamiento == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(tratamiento);
-        //}
+            return Ok(tratamiento);
+        }
 
-        //// PUT: api/Tratamiento/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutTratamiento(int id, Tratamiento tratamiento)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // PUT: api/Tratamiento/5
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult PutTratamiento(int id, Tratamiento tratamiento)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != tratamiento.IdTratamiento)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != tratamiento.IdTratamiento)
+            {
+                return BadRequest();
+            }
+            bool result;
+            try
+            {
+                result = db.ActualizarTratamiento(tratamiento.IdTratamiento, tratamiento.NombreTratamiento, tratamiento.Costo);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-        //    db.Entry(tratamiento).State = EntityState.Modified;
+            return Ok(result);
+        }
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!TratamientoExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+        // POST: api/Tratamiento
+        [ResponseType(typeof(Tratamiento))]
+        public IHttpActionResult PostTratamiento(Tratamiento tratamiento)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            try
+            {
+                if (db.AgregarTratamiento(tratamiento.NombreTratamiento, tratamiento.Costo, tratamiento.IdMascota))
+                    return Created(Url.Request.RequestUri, tratamiento);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return NotFound();
+        }
 
-        //// POST: api/Tratamiento
-        //[ResponseType(typeof(Tratamiento))]
-        //public IHttpActionResult PostTratamiento(Tratamiento tratamiento)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Tratamiento.Add(tratamiento);
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (TratamientoExists(tratamiento.IdTratamiento))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return CreatedAtRoute("DefaultApi", new { id = tratamiento.IdTratamiento }, tratamiento);
-        //}
-
-        //// DELETE: api/Tratamiento/5
-        //[ResponseType(typeof(Tratamiento))]
-        //public IHttpActionResult DeleteTratamiento(int id)
-        //{
-        //    Tratamiento tratamiento = db.Tratamiento.Find(id);
-        //    if (tratamiento == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Tratamiento.Remove(tratamiento);
-        //    db.SaveChanges();
-
-        //    return Ok(tratamiento);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
-        //private bool TratamientoExists(int id)
-        //{
-        //    return db.Tratamiento.Count(e => e.IdTratamiento == id) > 0;
-        //}
+        // DELETE: api/Tratamiento/5
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult DeleteTratamiento(int id)
+        {
+            try
+            {
+                if (db.EliminarTratamiento(id))
+                    return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return NotFound();
+        }
     }
 }

@@ -17,45 +17,37 @@ namespace BLL
                 List<ConsultarTratamientoResult> data = dc.ConsultarTratamiento().ToList();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
 
         }
-        public List<ConsultaTratamientoResult> ConsultaTratamiento(int Codigo)
+        public ConsultaTratamientoResult ConsultaTratamiento(int Codigo)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                List<ConsultaTratamientoResult> data = dc.ConsultaTratamiento(Codigo).ToList();
+                ConsultaTratamientoResult data = dc.ConsultaTratamiento(Codigo).SingleOrDefault();
                 return data;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
             }
 
         }
-        public bool AgregarTratamiento(int IdTratamiento, string nombreTratamiento, double costo)
+        public bool AgregarTratamiento(string nombreTratamiento, double? costo, int? idMascota)
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = Convert.ToInt32(dc.AgregarTratamiento(IdTratamiento, nombreTratamiento,costo));
+                int respuesta = dc.AgregarTratamiento(nombreTratamiento,costo, idMascota);
 
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -65,24 +57,16 @@ namespace BLL
         {
             try
             {
-                int respuesta = 1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = dc.ActualizarTratamiento(IdTratamiento, nombreTratamiento, costo);
-                if (respuesta == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                int respuesta = dc.ActualizarTratamiento(IdTratamiento, nombreTratamiento, costo);
+                return respuesta == 0;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
-        public bool EliminaTratamiento(int IdTratamiento)
+        public bool EliminarTratamiento(int IdTratamiento)
         {
             try
             {
@@ -90,9 +74,9 @@ namespace BLL
                 dc.EliminaTratamiento(IdTratamiento);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                return false;
+                throw;
             }
         }
 

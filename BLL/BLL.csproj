@@ -72,6 +72,7 @@
     <Compile Include="clsCliente.cs" />
     <Compile Include="clsInstitucion.cs" />
     <Compile Include="clsPersona.cs" />
+    <Compile Include="clsTratamiento.cs" />
     <Compile Include="clsUsuario.cs" />
     <Compile Include="clsProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
