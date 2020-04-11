@@ -69,13 +69,6 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarInstitucion")]
-		public int ActualizarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idInstitucion, institucion, idTipoIdentitifcacion, identificacion, telefono, direccion);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarProducto")]
 		public int ActualizarProducto([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProducto", DbType="Int")] System.Nullable<int> idProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProducto", DbType="VarChar(50)")] string nombreProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CostoProducto", DbType="Float")] System.Nullable<double> costoProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad)
 		{
@@ -109,13 +102,6 @@ namespace DAL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), asunto, descripcion, inicio, fin, colorFondo, diaCompleto);
 			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarInstitucion")]
-		public ISingleResult<AgregarInstitucionResult> AgregarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identitifcacion", DbType="VarChar(20)")] string identitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idInstitucion, institucion, idTipoIdentitifcacion, identitifcacion, telefono, direccion);
-			return ((ISingleResult<AgregarInstitucionResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarPersona")]
@@ -293,13 +279,6 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaTiposIdentificacion")]
-		public int EliminaTiposIdentificacion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoIdentificacion", DbType="Int")] System.Nullable<int> tipoIdentificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tipoIdentificacion);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaTratamiento")]
 		public int EliminaTratamiento([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTratamiento", DbType="Int")] System.Nullable<int> idTratamiento)
 		{
@@ -404,31 +383,26 @@ namespace DAL
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ConsultarCantonesResult>)(result.ReturnValue));
 		}
-	}
-	
-	public partial class AgregarInstitucionResult
-	{
 		
-		private System.Nullable<int> _Column1;
-		
-		public AgregarInstitucionResult()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarInstitucion")]
+		public int ActualizarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
 		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idInstitucion, institucion, idTipoIdentitifcacion, identificacion, telefono, direccion);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
-		public System.Nullable<int> Column1
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarInstitucion")]
+		public int AgregarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identitifcacion", DbType="VarChar(20)")] string identitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
 		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), institucion, idTipoIdentitifcacion, identitifcacion, telefono, direccion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaTiposIdentificacion")]
+		public int EliminaTiposIdentificacion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoIdentificacion);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

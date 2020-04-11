@@ -10,15 +10,6 @@
     <Parameter Name="DiaCompleto" Parameter="diaCompleto" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.ActualizarInstitucion" Method="ActualizarInstitucion">
-    <Parameter Name="IdInstitucion" Parameter="idInstitucion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Institucion" Parameter="institucion" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="IdTipoIdentitifcacion" Parameter="idTipoIdentitifcacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(15)" />
-    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(500)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.ActualizarProducto" Method="ActualizarProducto">
     <Parameter Name="IdProducto" Parameter="idProducto" Type="System.Int32" DbType="Int" />
     <Parameter Name="NombreProducto" Parameter="nombreProducto" Type="System.String" DbType="VarChar(50)" />
@@ -56,17 +47,6 @@
     <Parameter Name="ColorFondo" Parameter="colorFondo" Type="System.String" DbType="NVarChar(200)" />
     <Parameter Name="DiaCompleto" Parameter="diaCompleto" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.AgregarInstitucion" Method="AgregarInstitucion">
-    <Parameter Name="IdInstitucion" Parameter="idInstitucion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Institucion" Parameter="institucion" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="IdTipoIdentitifcacion" Parameter="idTipoIdentitifcacion" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Identitifcacion" Parameter="identitifcacion" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(15)" />
-    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(500)" />
-    <ElementType Name="AgregarInstitucionResult">
-      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
   </Function>
   <Function Name="dbo.AgregarPersona" Method="AgregarPersona">
     <Parameter Name="Cedula" Parameter="cedula" Type="System.String" DbType="VarChar(10)" />
@@ -292,10 +272,6 @@
     <Parameter Name="IdCita" Parameter="idCita" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.EliminaTiposIdentificacion" Method="EliminaTiposIdentificacion">
-    <Parameter Name="TipoIdentificacion" Parameter="tipoIdentificacion" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.EliminaTratamiento" Method="EliminaTratamiento">
     <Parameter Name="IdTratamiento" Parameter="idTratamiento" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
@@ -437,5 +413,26 @@
       <Column Name="Canton" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.ActualizarInstitucion" Method="ActualizarInstitucion">
+    <Parameter Name="IdInstitucion" Parameter="idInstitucion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Institucion" Parameter="institucion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdTipoIdentitifcacion" Parameter="idTipoIdentitifcacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AgregarInstitucion" Method="AgregarInstitucion">
+    <Parameter Name="Institucion" Parameter="institucion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdTipoIdentitifcacion" Parameter="idTipoIdentitifcacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Identitifcacion" Parameter="identitifcacion" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EliminaTiposIdentificacion" Method="EliminaTiposIdentificacion">
+    <Parameter Name="IdTipoIdentificacion" Parameter="idTipoIdentificacion" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

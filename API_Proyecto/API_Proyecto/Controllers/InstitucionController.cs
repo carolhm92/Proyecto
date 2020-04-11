@@ -73,7 +73,7 @@ namespace API_Proyecto.Controllers
 
             try
             {
-                if (db.AgregarInstitucion(institucion.IdInstitucion, institucion.Institucion, institucion.IdTipoIdentitifcacion, institucion.Identificacion, institucion.Telefono, institucion.Direccion))
+                if (db.AgregarInstitucion(institucion.Institucion, institucion.IdTipoIdentitifcacion, institucion.Identificacion, institucion.Telefono, institucion.Direccion))
                     return Created(Url.Request.RequestUri, institucion);
             }
             catch (Exception ex)

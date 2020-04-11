@@ -42,10 +42,9 @@ namespace BLL
         {
             try
             {
-                int respuesta = -1;
                 DatosDataContext dc = new DatosDataContext();
-                respuesta = dc.AgregarTipoIdentificacion(TipoIdentificacion);
-                return respuesta == -1;
+                int respuesta = dc.AgregarTipoIdentificacion(TipoIdentificacion);
+                return respuesta == 0;
             }
             catch 
             {

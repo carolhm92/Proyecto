@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Consola.Models.TipoIdentificacion>
+﻿@model IEnumerable<Consola.Models.TipodeIdentificacion>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TipoIdentificacion1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.TipoIdentificacion)
         </th>
         <th></th>
     </tr>
@@ -23,10 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TipoIdentificacion1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
+            @Html.DisplayFor(modelItem => item.TipoIdentificacion)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdTipoIdentificacion }) |

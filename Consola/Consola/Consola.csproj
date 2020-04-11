@@ -205,6 +205,7 @@
     <Compile Include="Models\DatoPersona.cs" />
     <Compile Include="Models\Distritos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Instituciones.cs" />
     <Compile Include="Models\JWT.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Mascota.cs" />
@@ -4350,6 +4351,11 @@
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Institucion\Create.cshtml" />
+    <Content Include="Views\Institucion\Delete.cshtml" />
+    <Content Include="Views\Institucion\Details.cshtml" />
+    <Content Include="Views\Institucion\Edit.cshtml" />
+    <Content Include="Views\Institucion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4401,13 +4407,8 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="README.md" />
     <Content Include="Views\Citas\Index.cshtml" />
-    <Content Include="Views\Cliente\Crear.cshtml" />
-    <Content Include="Views\Cliente\Editar.cshtml" />
-    <Content Include="Views\Cliente\Indexmalo.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Institucion\Consultar.cshtml" />
-    <Content Include="Views\Institucion\Consultar2.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
