@@ -1,10 +1,10 @@
 
 namespace API_Proyecto.Models
 {
-    public class TipoIdentificacion
+    public class TipodeIdentificacion
     {
         public int IdTipoIdentificacion { get; set; }
-        public string TipoIdentificacion1 { get; set; }
+        public string TipoIdentificacion { get; set; }
         public bool Estado { get; set; }
     }
 }

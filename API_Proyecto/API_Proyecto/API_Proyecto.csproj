@@ -189,6 +189,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\InstitucionController.cs" />
+    <Compile Include="Controllers\DistritoController.cs" />
+    <Compile Include="Controllers\CantonController.cs" />
+    <Compile Include="Controllers\ProvinciaController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
@@ -203,14 +206,14 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Models\Cita.cs" />
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\Institucion.cs" />
+    <Compile Include="Models\Instituciones.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Mascota.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Seguridad.cs" />
-    <Compile Include="Models\TipoIdentificacion.cs" />
+    <Compile Include="Models\TipodeIdentificacion.cs" />
     <Compile Include="Models\TokenGenerator.cs" />
     <Compile Include="Models\TokenValidationHandler.cs" />
     <Compile Include="Models\Tratamiento.cs" />

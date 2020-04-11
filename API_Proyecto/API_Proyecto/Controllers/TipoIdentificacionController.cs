@@ -38,7 +38,7 @@ namespace API_Proyecto.Controllers
 
         // PUT: api/TipoIdentificacion/5
         [ResponseType(typeof(bool))]
-        public IHttpActionResult PutTipoIdentificacion(int id, TipoIdentificacion tipoIdentificacion)
+        public IHttpActionResult PutTipoIdentificacion(int id, TipodeIdentificacion tipoIdentificacion)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +52,7 @@ namespace API_Proyecto.Controllers
             bool result;
             try
             {
-                result = db.ActualizarTipoIdentificacion(tipoIdentificacion.IdTipoIdentificacion, tipoIdentificacion.TipoIdentificacion1);
+                result = db.ActualizarTipoIdentificacion(tipoIdentificacion.IdTipoIdentificacion, tipoIdentificacion.TipoIdentificacion);
             }
             catch (Exception ex)
             {
@@ -63,8 +63,8 @@ namespace API_Proyecto.Controllers
         }
 
         // POST: api/TipoIdentificacion
-        [ResponseType(typeof(TipoIdentificacion))]
-        public IHttpActionResult PostTipoIdentificacion(TipoIdentificacion tipoIdentificacion)
+        [ResponseType(typeof(TipodeIdentificacion))]
+        public IHttpActionResult PostTipoIdentificacion(TipodeIdentificacion tipoIdentificacion)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace API_Proyecto.Controllers
 
             try
             {
-                if (db.AgregarTipoIdentificacion(tipoIdentificacion.TipoIdentificacion1))
+                if (db.AgregarTipoIdentificacion(tipoIdentificacion.TipoIdentificacion))
                     return Created(Url.Request.RequestUri, tipoIdentificacion);
             }
             catch (Exception ex)

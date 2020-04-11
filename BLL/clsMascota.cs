@@ -38,7 +38,7 @@ namespace BLL
             }
 
         }
-        public bool AgregarMascota(string identificacion, string nombreMascota, string especie, string raza, int? idCliente,double? peso)
+        public bool AgregarMascota(string identificacion, string nombreMascota, string especie, string raza, int idCliente,double? peso)
         {
             try
             {
