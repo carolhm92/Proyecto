@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,8 @@ namespace Consola.Models
         public DateTime Fin { get; set; }
         public string ColorFondo { get; set; }
         public bool DiaCompleto { get; set; }
+        [ScaffoldColumn(false)]
+        public bool Estado { get; set; }
 
     }
 }

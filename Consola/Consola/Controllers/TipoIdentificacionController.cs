@@ -24,7 +24,7 @@ namespace Consola.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var datastring = await response.Content.ReadAsStringAsync();
-                var tipoIdentificacions = JsonConvert.DeserializeObject<List<TipodeIdentificacion>>(datastring);
+                var tipoIdentificacions = JsonConvert.DeserializeObject<List<TipodeIdentificacion>>(datastring).FindAll(c => c.Estado);
                 return View(tipoIdentificacions);
             }
             bitacora.AgregarBitacora("TipoIdentificacion", "Index", "No se pudo obtener datos", Session["US"].ToString(), 2);

@@ -31,7 +31,7 @@ namespace Consola.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var datastring = await response.Content.ReadAsStringAsync();
-                var mascotas = JsonConvert.DeserializeObject<List<Mascota>>(datastring);
+                var mascotas = JsonConvert.DeserializeObject<List<Mascota>>(datastring).FindAll(c => c.Estado);
                 return View(mascotas);
             }
             bitacora.AgregarBitacora("Mascota", "Index", "No se pudo obtener datos", Session["US"].ToString(), 2);
@@ -160,7 +160,7 @@ namespace Consola.Controllers
                 var datastring = resultclient.Content.ReadAsStringAsync().Result;
                 clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
             }
-            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            ViewBag.Clientes = new SelectList(clientes.FindAll(c => c.Estado), "IdCliente", "Identificacion");
             return clientes;
         }
     }

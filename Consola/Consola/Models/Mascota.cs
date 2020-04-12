@@ -1,4 +1,6 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Consola.Models
 {
     public class Mascota
@@ -10,6 +12,7 @@ namespace Consola.Models
         public int IdCliente { get; set; }
         public double? Peso { get; set; }
         public string Identificacion { get; set; }
+        [ScaffoldColumn(false)]
         public bool Estado { get; set; }
     }
 }

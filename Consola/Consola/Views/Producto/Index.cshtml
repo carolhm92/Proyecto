@@ -23,9 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Cantidad)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
         <th></th>
     </tr>
 
@@ -38,13 +35,10 @@
             @Html.DisplayFor(modelItem => item.CostoProducto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdProveedor)
+            @Html.DisplayFor(modelItem => item.Proveedor_Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdProducto }) |

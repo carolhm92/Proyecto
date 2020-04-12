@@ -27,7 +27,7 @@ namespace Consola.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var datastring = await response.Content.ReadAsStringAsync();
-                var instituciones = JsonConvert.DeserializeObject<List<Instituciones>>(datastring);
+                var instituciones = JsonConvert.DeserializeObject<List<Instituciones>>(datastring).FindAll(c => c.Estado);
                 instituciones = await LlenarData(instituciones);
                 return View(instituciones);
             }
@@ -161,7 +161,7 @@ namespace Consola.Controllers
                 var datastring = resultclient.Content.ReadAsStringAsync().Result;
                 tipos = JsonConvert.DeserializeObject<List<TipodeIdentificacion>>(datastring);
             }
-            ViewBag.TiposIdentificaciones = new SelectList(tipos, "IdTipoIdentificacion", "TipoIdentificacion");
+            ViewBag.TiposIdentificaciones = new SelectList(tipos.FindAll(c => c.Estado), "IdTipoIdentificacion", "TipoIdentificacion");
             return tipos;
         }
 

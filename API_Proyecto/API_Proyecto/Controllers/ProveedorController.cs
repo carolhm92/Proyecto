@@ -73,7 +73,7 @@ namespace API_Proyecto.Controllers
 
             try
             {
-                if (db.AgregarProveedor(proveedor.IdProveedor, proveedor.NombreProveedor, proveedor.Provincia, proveedor.Canton, proveedor.Distrito, proveedor.Correo, proveedor.Telefono))
+                if (db.AgregarProveedor(proveedor.NombreProveedor, proveedor.Provincia, proveedor.Canton, proveedor.Distrito, proveedor.Correo, proveedor.Telefono))
                     return Created(Url.Request.RequestUri, proveedor);
             }
             catch (Exception ex)
