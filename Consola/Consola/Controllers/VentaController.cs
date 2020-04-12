@@ -39,30 +39,12 @@ namespace Consola.Controllers
             return View(new List<Venta>());
         }
 
-        // GET: Venta/Details/5
-        public async Task<ActionResult> Details(int id)
-        {
-            ApiCall api = new ApiCall(Session);
-            var result = await api.GetAsync("/api/Venta/" + id);
-            Venta venta = null;
-            if (result.IsSuccessStatusCode)
-            {
-                var datastring = result.Content.ReadAsStringAsync().Result;
-                venta = JsonConvert.DeserializeObject<Venta>(datastring);
-            }
-            if (venta == null)
-            {
-                bitacora.AgregarBitacora("Venta", "Details", "No existe", Session["US"].ToString(), 2);
-                return View(new Venta());
-            }
-            return View(venta);
-        }
-
         // GET: Venta/Create
         public async Task<ActionResult> Create()
         {
             await ObtenerCitas();
             await ObtenerProductos();
+            ObtenerTipos();
             return View();
         }
 
@@ -80,8 +62,17 @@ namespace Consola.Controllers
             }
             await ObtenerCitas();
             await ObtenerProductos();
+            ObtenerTipos();
             bitacora.AgregarBitacora("Venta", "Create", "No se creo", Session["US"].ToString(), 2);
             return View(venta);
+        }
+
+        private void ObtenerTipos()
+        {
+            ViewBag.Tipos = new SelectList(new[] {
+                new SelectListItem { Text="Producto", Value="Producto" },
+                new SelectListItem { Text="Servicio", Value="Servicio" }
+            }, "Value", "Text");
         }
 
         // GET: Venta/Edit/5
@@ -102,6 +93,7 @@ namespace Consola.Controllers
             }
             await ObtenerCitas();
             await ObtenerProductos();
+            ObtenerTipos();
             return View(venta);
         }
 
@@ -119,6 +111,7 @@ namespace Consola.Controllers
             }
             await ObtenerCitas();
             await ObtenerProductos();
+            ObtenerTipos();
             bitacora.AgregarBitacora("Venta", "Edit", "No se edito", Session["US"].ToString(), 2);
             return View(venta);
         }

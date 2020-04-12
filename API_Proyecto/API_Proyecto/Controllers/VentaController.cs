@@ -51,7 +51,7 @@ namespace API_Proyecto.Controllers
             bool result;
             try
             {
-                result = db.ActualizarVenta(venta.IdVenta, venta.Cedula, venta.Identificacion, venta.IdProducto, venta.IdCita, venta.Fecha, venta.Total);
+                result = db.ActualizarVenta(venta.IdVenta, venta.Cedula, venta.Identificacion, venta.IdProducto, venta.IdCita, venta.Fecha, venta.Tipo, venta.Impuesto, venta.Cantidad, venta.Total);
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace API_Proyecto.Controllers
 
             try
             {
-                if (db.AgregarVenta(venta.Cedula, venta.Identificacion, venta.IdProducto, venta.IdCita, venta.Fecha, venta.Total))
+                if (db.AgregarVenta(venta.Cedula, venta.Identificacion, venta.IdProducto, venta.IdCita, venta.Fecha, venta.Tipo, venta.Impuesto, venta.Cantidad, venta.Total))
                     return Created(Url.Request.RequestUri, venta);
             }
             catch (Exception ex)

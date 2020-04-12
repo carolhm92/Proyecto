@@ -38,12 +38,12 @@ namespace BLL
             }
 
         }
-        public bool AgregarVenta(string cedula, string identificacion, int? idProducto, int? idCita, DateTime? fecha, double? total)
+        public bool AgregarVenta(string cedula, string identificacion, int? idProducto, int? idCita, DateTime? fecha, string tipo, double? impuesto, int? cantidad, double? total)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                int respuesta = dc.AgregarVenta(cedula,identificacion,idProducto, idCita,fecha,total);
+                int respuesta = dc.AgregarVenta(cedula, identificacion, idProducto, idCita, fecha, tipo, impuesto, cantidad, total);
                 return respuesta == 0;
             }
             catch
@@ -52,12 +52,12 @@ namespace BLL
                 throw;
             }
         }
-        public bool ActualizarVenta(int? IdVenta, string cedula, string identificacion, int? idProducto, int? idCita, DateTime? fecha, double? total)
+        public bool ActualizarVenta(int? IdVenta, string cedula, string identificacion, int? idProducto, int? idCita, DateTime? fecha, string tipo, double? impuesto, int? cantidad, double? total)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                int respuesta = dc.ActualizarVenta(IdVenta, cedula, identificacion, idProducto, idCita, fecha, total);
+                int respuesta = dc.ActualizarVenta(IdVenta, cedula, identificacion, idProducto, idCita, fecha, tipo, impuesto, cantidad, total);
                 return respuesta == 0;
             }
             catch
@@ -79,5 +79,20 @@ namespace BLL
             }
         }
 
+        public List<ConsultarReporteVentasResult> ConsultaReporteVentas(DateTime fecha)
+        {
+            try
+            {
+                DatosDataContext dc = new DatosDataContext();
+                List<ConsultarReporteVentasResult> data = dc.ConsultarReporteVentas(fecha).ToList();
+                return data;
+            }
+            catch
+            {
+
+                throw;
+            }
+
+        }
     }
 }

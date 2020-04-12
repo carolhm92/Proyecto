@@ -191,6 +191,7 @@
     <Compile Include="Controllers\InstitucionController.cs" />
     <Compile Include="Controllers\DistritoController.cs" />
     <Compile Include="Controllers\CantonController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\Tratamiento.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Venta.cs" />
+    <Compile Include="Models\ViewReporteBusqueda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
