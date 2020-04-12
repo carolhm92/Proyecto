@@ -14,6 +14,21 @@ namespace API_Proyecto.Controllers
 {
     public class PersonaController : ApiController
     {
+        private clsPersona db = new clsPersona();
+
+        // GET: api/Persona/5
+        [ResponseType(typeof(ConsultaPersonaResult))]
+        public IHttpActionResult GetPersona(string id)
+        {
+            ConsultaPersonaResult persona = db.ConsultaPersona(id);
+            if (persona == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(persona);
+        }
+
         //private ProyectoCarolEntities db = new ProyectoCarolEntities();
 
         //// GET: api/Persona

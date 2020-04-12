@@ -33,7 +33,7 @@ namespace DAL
     #endregion
 		
 		public DatosDataContext() : 
-				base(global::DAL.Properties.Settings.Default.ProyectoVeterinariaConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.ProyectoVeterinariaConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -69,38 +69,10 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarCliente")]
-		public int ActualizarCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido1", DbType="VarChar(50)")] string apellido1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido2", DbType="VarChar(50)")] string apellido2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente, idTipoIdentificacion, nombre, apellido1, apellido2, correo, telefono, provincia, canton, distrito);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarInstitucion")]
-		public int ActualizarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idInstitucion, institucion, idTipoIdentitifcacion, identificacion, telefono, direccion);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarMascota")]
-		public int ActualizarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMascota", DbType="Int")] System.Nullable<int> idMascota, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreMascota", DbType="VarChar(50)")] string nombreMascota, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Especie", DbType="VarChar(50)")] string especie, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Peso", DbType="Float")] System.Nullable<double> peso)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idMascota, nombreMascota, especie, raza, idCliente, peso);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarProducto")]
 		public int ActualizarProducto([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProducto", DbType="Int")] System.Nullable<int> idProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProducto", DbType="VarChar(50)")] string nombreProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CostoProducto", DbType="Float")] System.Nullable<double> costoProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProducto, nombreProducto, costoProducto, idProveedor, cantidad);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarProveedor")]
-		public int ActualizarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProveedor", DbType="VarChar(50)")] string nombreProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor, nombreProveedor, provincia, canton, distrito, correo, telefono);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -125,27 +97,6 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarCliente")]
-		public int AgregarCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido1", DbType="VarChar(50)")] string apellido1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido2", DbType="VarChar(50)")] string apellido2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoIdentificacion, identificacion, nombre, apellido1, apellido2, correo, telefono, provincia, canton, distrito);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarInstitucion")]
-		public ISingleResult<AgregarInstitucionResult> AgregarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identitifcacion", DbType="VarChar(20)")] string identitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idInstitucion, institucion, idTipoIdentitifcacion, identitifcacion, telefono, direccion);
-			return ((ISingleResult<AgregarInstitucionResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarMascota")]
-		public int AgregarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreMascota", DbType="VarChar(50)")] string nombreMascota, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Especie", DbType="VarChar(50)")] string especie, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> peso)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombreMascota, especie, raza, idCliente, peso);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarPersona")]
 		public int AgregarPersona([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Sexo", DbType="Int")] System.Nullable<int> sexo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(30)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ApellidoP", DbType="VarChar(26)")] string apellidoP, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ApellidoM", DbType="VarChar(26)")] string apellidoM, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(6)")] string direccion)
 		{
@@ -157,13 +108,6 @@ namespace DAL
 		public int AgregarProducto([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProducto", DbType="Int")] System.Nullable<int> idProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProducto", DbType="VarChar(50)")] string nombreProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CostoProducto", DbType="Float")] System.Nullable<double> costoProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProducto, nombreProducto, costoProducto, idProveedor, cantidad);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarProveedor")]
-		public int AgregarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProveedor", DbType="VarChar(50)")] string nombreProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor, nombreProveedor, provincia, canton, distrito, correo, telefono);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -181,25 +125,11 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Cantones")]
-		public ISingleResult<CantonesResult> Cantones([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provincia);
-			return ((ISingleResult<CantonesResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaCita")]
 		public ISingleResult<ConsultaCitaResult> ConsultaCita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCita);
 			return ((ISingleResult<ConsultaCitaResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaCliente")]
-		public ISingleResult<ConsultaClienteResult> ConsultaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente);
-			return ((ISingleResult<ConsultaClienteResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaInstitucion")]
@@ -230,25 +160,11 @@ namespace DAL
 			return ((ISingleResult<ConsultaProductoResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaProveedor")]
-		public ISingleResult<ConsultaProveedorResult> ConsultaProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor);
-			return ((ISingleResult<ConsultaProveedorResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCita")]
 		public ISingleResult<ConsultarCitaResult> ConsultarCita()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ConsultarCitaResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCliente")]
-		public ISingleResult<ConsultarClienteResult> ConsultarCliente()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarClienteResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarInstitucion")]
@@ -270,13 +186,6 @@ namespace DAL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ConsultarProductoResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarProveedor")]
-		public ISingleResult<ConsultarProveedorResult> ConsultarProveedor()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ConsultarProveedorResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarTiposIdentificacion")]
@@ -307,20 +216,6 @@ namespace DAL
 			return ((ISingleResult<ConsultaTratamientoResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Distritos")]
-		public ISingleResult<DistritosResult> Distritos([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provincia, canton);
-			return ((ISingleResult<DistritosResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaCliente")]
-		public int EliminaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaInstitucion")]
 		public int EliminaInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion)
 		{
@@ -342,24 +237,10 @@ namespace DAL
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaProveedor")]
-		public int EliminaProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCita")]
 		public int EliminarCita([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCita);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaTiposIdentificacion")]
-		public int EliminaTiposIdentificacion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TipoIdentificacion", DbType="Int")] System.Nullable<int> tipoIdentificacion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tipoIdentificacion);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -377,6 +258,69 @@ namespace DAL
 			return ((ISingleResult<ExisteUsuarioResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.RegistrarBitacora")]
+		public int RegistrarBitacora([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Controlador", DbType="VarChar(50)")] string controlador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Metodo", DbType="VarChar(50)")] string metodo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mensaje", DbType="VarChar(MAX)")] string mensaje, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="Int")] System.Nullable<int> tipo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), controlador, metodo, mensaje, usuario, tipo);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarMascota")]
+		public int AgregarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreMascota", DbType="VarChar(50)")] string nombreMascota, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Especie", DbType="VarChar(50)")] string especie, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Float")] System.Nullable<double> peso)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), identificacion, nombreMascota, especie, raza, idCliente, peso);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarMascota")]
+		public int ActualizarMascota([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdMascota", DbType="Int")] System.Nullable<int> idMascota, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreMascota", DbType="VarChar(50)")] string nombreMascota, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Especie", DbType="VarChar(50)")] string especie, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(50)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Peso", DbType="Float")] System.Nullable<double> peso)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idMascota, nombreMascota, especie, raza, idCliente, peso);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarCliente")]
+		public int ActualizarCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido1", DbType="VarChar(50)")] string apellido1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido2", DbType="VarChar(50)")] string apellido2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente, idTipoIdentificacion, nombre, apellido1, apellido2, correo, telefono, provincia, canton, distrito);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarCliente")]
+		public int AgregarCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido1", DbType="VarChar(50)")] string apellido1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido2", DbType="VarChar(50)")] string apellido2, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(2)")] string distrito)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoIdentificacion, identificacion, nombre, apellido1, apellido2, correo, telefono, provincia, canton, distrito);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Cantones")]
+		public ISingleResult<CantonesResult> Cantones([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provincia);
+			return ((ISingleResult<CantonesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaCliente")]
+		public ISingleResult<ConsultaClienteResult> ConsultaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente);
+			return ((ISingleResult<ConsultaClienteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCliente")]
+		public ISingleResult<ConsultarClienteResult> ConsultarCliente()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarClienteResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Distritos")]
+		public ISingleResult<DistritosResult> Distritos([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), provincia, canton);
+			return ((ISingleResult<DistritosResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Provincias")]
 		public ISingleResult<ProvinciasResult> Provincias()
 		{
@@ -384,99 +328,172 @@ namespace DAL
 			return ((ISingleResult<ProvinciasResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.RegistrarBitacora")]
-		public int RegistrarBitacora([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Controlador", DbType="VarChar(50)")] string controlador, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Metodo", DbType="VarChar(50)")] string metodo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Mensaje", DbType="VarChar(MAX)")] string mensaje, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="Int")] System.Nullable<int> tipo)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaCliente")]
+		public int EliminaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCliente", DbType="Int")] System.Nullable<int> idCliente)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), controlador, metodo, mensaje, usuario, tipo);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCliente);
 			return ((int)(result.ReturnValue));
 		}
-	}
-	
-	public partial class AgregarInstitucionResult
-	{
 		
-		private System.Nullable<int> _Column1;
-		
-		public AgregarInstitucionResult()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarDistritos")]
+		public ISingleResult<ConsultarDistritosResult> ConsultarDistritos()
 		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarDistritosResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
-		public System.Nullable<int> Column1
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarCantones")]
+		public ISingleResult<ConsultarCantonesResult> ConsultarCantones()
 		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
-	public partial class CantonesResult
-	{
-		
-		private char _Provincia;
-		
-		private string _Canton;
-		
-		private string _Nombre;
-		
-		public CantonesResult()
-		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarCantonesResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
-		public char Provincia
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarInstitucion")]
+		public int ActualizarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdInstitucion", DbType="Int")] System.Nullable<int> idInstitucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
 		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this._Provincia = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idInstitucion, institucion, idTipoIdentitifcacion, identificacion, telefono, direccion);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Canton
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarInstitucion")]
+		public int AgregarInstitucion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Institucion", DbType="VarChar(50)")] string institucion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentitifcacion", DbType="Int")] System.Nullable<int> idTipoIdentitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identitifcacion", DbType="VarChar(20)")] string identitifcacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(500)")] string direccion)
 		{
-			get
-			{
-				return this._Canton;
-			}
-			set
-			{
-				if ((this._Canton != value))
-				{
-					this._Canton = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), institucion, idTipoIdentitifcacion, identitifcacion, telefono, direccion);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
-		public string Nombre
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaTiposIdentificacion")]
+		public int EliminaTiposIdentificacion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdTipoIdentificacion", DbType="Int")] System.Nullable<int> idTipoIdentificacion)
 		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idTipoIdentificacion);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarProveedor")]
+		public int ActualizarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProveedor", DbType="VarChar(50)")] string nombreProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(3)")] string distrito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor, nombreProveedor, provincia, canton, distrito, correo, telefono);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarProveedor")]
+		public int AgregarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProveedor", DbType="VarChar(50)")] string nombreProveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Provincia", DbType="Char(1)")] System.Nullable<char> provincia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Canton", DbType="Char(2)")] string canton, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Distrito", DbType="Char(3)")] string distrito, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="VarChar(15)")] string telefono)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombreProveedor, provincia, canton, distrito, correo, telefono);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarProveedor")]
+		public ISingleResult<ConsultarProveedorResult> ConsultarProveedor()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaProveedor")]
+		public ISingleResult<ConsultaProveedorResult> ConsultaProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor);
+			return ((ISingleResult<ConsultaProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaProveedor")]
+		public int EliminaProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProveedor", DbType="Int")] System.Nullable<int> idProveedor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idProveedor);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarRolUsuario")]
+		public int AgregarRolUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdROL", DbType="Int")] System.Nullable<int> idROL)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, idROL);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarUsuario")]
+		public ISingleResult<ConsultarUsuarioResult> ConsultarUsuario()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarUsuarioResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarRolUsuario")]
+		public ISingleResult<ConsultarRolUsuarioResult> ConsultarRolUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((ISingleResult<ConsultarRolUsuarioResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarUsuario")]
+		public int ActualizarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(50)")] string clave)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario, usuario, clave);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaUsuario")]
+		public int EliminaUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarRolUsuario")]
+		public int EliminarRolUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdUsuario", DbType="Int")] System.Nullable<int> idUsuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idUsuario);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarUsuario")]
+		public ISingleResult<AgregarUsuarioResult> AgregarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(50)")] string clave)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), usuario, clave);
+			return ((ISingleResult<AgregarUsuarioResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarReporteVentas")]
+		public ISingleResult<ConsultarReporteVentasResult> ConsultarReporteVentas([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="DateTime")] System.Nullable<System.DateTime> fecha)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fecha);
+			return ((ISingleResult<ConsultarReporteVentasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ActualizarVenta")]
+		public int ActualizarVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdVenta", DbType="Int")] System.Nullable<int> idVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProducto", DbType="Int")] System.Nullable<int> idProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="Date")] System.Nullable<System.DateTime> fecha, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(30)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Impuesto", DbType="Float")] System.Nullable<double> impuesto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Total", DbType="Float")] System.Nullable<double> total)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idVenta, cedula, identificacion, idProducto, idCita, fecha, tipo, impuesto, cantidad, total);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarVenta")]
+		public int AgregarVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cedula", DbType="VarChar(10)")] string cedula, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Identificacion", DbType="VarChar(20)")] string identificacion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdProducto", DbType="Int")] System.Nullable<int> idProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCita", DbType="Int")] System.Nullable<int> idCita, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="Date")] System.Nullable<System.DateTime> fecha, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(30)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Impuesto", DbType="Float")] System.Nullable<double> impuesto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Total", DbType="Float")] System.Nullable<double> total)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cedula, identificacion, idProducto, idCita, fecha, tipo, impuesto, cantidad, total);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultarVenta")]
+		public ISingleResult<ConsultarVentaResult> ConsultarVenta()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<ConsultarVentaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ConsultaVenta")]
+		public ISingleResult<ConsultaVentaResult> ConsultaVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdVenta", DbType="Int")] System.Nullable<int> idVenta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idVenta);
+			return ((ISingleResult<ConsultaVentaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminaVenta")]
+		public int EliminaVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdVenta", DbType="Int")] System.Nullable<int> idVenta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idVenta);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -627,230 +644,6 @@ namespace DAL
 				if ((this._Descripcion != value))
 				{
 					this._Descripcion = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultaClienteResult
-	{
-		
-		private int _IdCliente;
-		
-		private int _IdTipoIdentificacion;
-		
-		private string _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Apellido1;
-		
-		private string _Apellido2;
-		
-		private string _Correo;
-		
-		private string _Telefono;
-		
-		private char _Provincia;
-		
-		private string _Canton;
-		
-		private string _Distrito;
-		
-		private bool _Estado;
-		
-		public ConsultaClienteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCliente", DbType="Int NOT NULL")]
-		public int IdCliente
-		{
-			get
-			{
-				return this._IdCliente;
-			}
-			set
-			{
-				if ((this._IdCliente != value))
-				{
-					this._IdCliente = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoIdentificacion", DbType="Int NOT NULL")]
-		public int IdTipoIdentificacion
-		{
-			get
-			{
-				return this._IdTipoIdentificacion;
-			}
-			set
-			{
-				if ((this._IdTipoIdentificacion != value))
-				{
-					this._IdTipoIdentificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Apellido1
-		{
-			get
-			{
-				return this._Apellido1;
-			}
-			set
-			{
-				if ((this._Apellido1 != value))
-				{
-					this._Apellido1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido2", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Apellido2
-		{
-			get
-			{
-				return this._Apellido2;
-			}
-			set
-			{
-				if ((this._Apellido2 != value))
-				{
-					this._Apellido2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
-		public char Provincia
-		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this._Provincia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Canton
-		{
-			get
-			{
-				return this._Canton;
-			}
-			set
-			{
-				if ((this._Canton != value))
-				{
-					this._Canton = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Distrito
-		{
-			get
-			{
-				return this._Distrito;
-			}
-			set
-			{
-				if ((this._Distrito != value))
-				{
-					this._Distrito = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
-		public bool Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this._Estado = value;
 				}
 			}
 		}
@@ -1410,158 +1203,6 @@ namespace DAL
 		}
 	}
 	
-	public partial class ConsultaProveedorResult
-	{
-		
-		private int _IdProveedor;
-		
-		private string _NombreProveedor;
-		
-		private char _Provincia;
-		
-		private char _Canton;
-		
-		private char _Distrito;
-		
-		private string _Telefono;
-		
-		private string _Correo;
-		
-		private bool _Estado;
-		
-		public ConsultaProveedorResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProveedor", DbType="Int NOT NULL")]
-		public int IdProveedor
-		{
-			get
-			{
-				return this._IdProveedor;
-			}
-			set
-			{
-				if ((this._IdProveedor != value))
-				{
-					this._IdProveedor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProveedor", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string NombreProveedor
-		{
-			get
-			{
-				return this._NombreProveedor;
-			}
-			set
-			{
-				if ((this._NombreProveedor != value))
-				{
-					this._NombreProveedor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
-		public char Provincia
-		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this._Provincia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(1) NOT NULL")]
-		public char Canton
-		{
-			get
-			{
-				return this._Canton;
-			}
-			set
-			{
-				if ((this._Canton != value))
-				{
-					this._Canton = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(1) NOT NULL")]
-		public char Distrito
-		{
-			get
-			{
-				return this._Distrito;
-			}
-			set
-			{
-				if ((this._Distrito != value))
-				{
-					this._Distrito = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15)")]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
-		public bool Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this._Estado = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ConsultarCitaResult
 	{
 		
@@ -1709,230 +1350,6 @@ namespace DAL
 				if ((this._Descripcion != value))
 				{
 					this._Descripcion = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ConsultarClienteResult
-	{
-		
-		private int _IdCliente;
-		
-		private int _IdTipoIdentificacion;
-		
-		private string _Identificacion;
-		
-		private string _Nombre;
-		
-		private string _Apellido1;
-		
-		private string _Apellido2;
-		
-		private string _Correo;
-		
-		private string _Telefono;
-		
-		private char _Provincia;
-		
-		private string _Canton;
-		
-		private string _Distrito;
-		
-		private bool _Estado;
-		
-		public ConsultarClienteResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCliente", DbType="Int NOT NULL")]
-		public int IdCliente
-		{
-			get
-			{
-				return this._IdCliente;
-			}
-			set
-			{
-				if ((this._IdCliente != value))
-				{
-					this._IdCliente = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoIdentificacion", DbType="Int NOT NULL")]
-		public int IdTipoIdentificacion
-		{
-			get
-			{
-				return this._IdTipoIdentificacion;
-			}
-			set
-			{
-				if ((this._IdTipoIdentificacion != value))
-				{
-					this._IdTipoIdentificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string Identificacion
-		{
-			get
-			{
-				return this._Identificacion;
-			}
-			set
-			{
-				if ((this._Identificacion != value))
-				{
-					this._Identificacion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Apellido1
-		{
-			get
-			{
-				return this._Apellido1;
-			}
-			set
-			{
-				if ((this._Apellido1 != value))
-				{
-					this._Apellido1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido2", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Apellido2
-		{
-			get
-			{
-				return this._Apellido2;
-			}
-			set
-			{
-				if ((this._Apellido2 != value))
-				{
-					this._Apellido2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
-		public char Provincia
-		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this._Provincia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Canton
-		{
-			get
-			{
-				return this._Canton;
-			}
-			set
-			{
-				if ((this._Canton != value))
-				{
-					this._Canton = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Distrito
-		{
-			get
-			{
-				return this._Distrito;
-			}
-			set
-			{
-				if ((this._Distrito != value))
-				{
-					this._Distrito = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
-		public bool Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this._Estado = value;
 				}
 			}
 		}
@@ -2358,158 +1775,6 @@ namespace DAL
 		}
 	}
 	
-	public partial class ConsultarProveedorResult
-	{
-		
-		private int _IdProveedor;
-		
-		private string _NombreProveedor;
-		
-		private char _Provincia;
-		
-		private char _Canton;
-		
-		private char _Distrito;
-		
-		private string _Telefono;
-		
-		private string _Correo;
-		
-		private bool _Estado;
-		
-		public ConsultarProveedorResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProveedor", DbType="Int NOT NULL")]
-		public int IdProveedor
-		{
-			get
-			{
-				return this._IdProveedor;
-			}
-			set
-			{
-				if ((this._IdProveedor != value))
-				{
-					this._IdProveedor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProveedor", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string NombreProveedor
-		{
-			get
-			{
-				return this._NombreProveedor;
-			}
-			set
-			{
-				if ((this._NombreProveedor != value))
-				{
-					this._NombreProveedor = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
-		public char Provincia
-		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this._Provincia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(1) NOT NULL")]
-		public char Canton
-		{
-			get
-			{
-				return this._Canton;
-			}
-			set
-			{
-				if ((this._Canton != value))
-				{
-					this._Canton = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(1) NOT NULL")]
-		public char Distrito
-		{
-			get
-			{
-				return this._Distrito;
-			}
-			set
-			{
-				if ((this._Distrito != value))
-				{
-					this._Distrito = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15)")]
-		public string Telefono
-		{
-			get
-			{
-				return this._Telefono;
-			}
-			set
-			{
-				if ((this._Telefono != value))
-				{
-					this._Telefono = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Correo
-		{
-			get
-			{
-				return this._Correo;
-			}
-			set
-			{
-				if ((this._Correo != value))
-				{
-					this._Correo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
-		public bool Estado
-		{
-			get
-			{
-				return this._Estado;
-			}
-			set
-			{
-				if ((this._Estado != value))
-				{
-					this._Estado = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ConsultarTiposIdentificacionResult
 	{
 		
@@ -2830,86 +2095,6 @@ namespace DAL
 		}
 	}
 	
-	public partial class DistritosResult
-	{
-		
-		private char _Provincia;
-		
-		private string _Canton;
-		
-		private string _Distrito;
-		
-		private string _Nombre;
-		
-		public DistritosResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
-		public char Provincia
-		{
-			get
-			{
-				return this._Provincia;
-			}
-			set
-			{
-				if ((this._Provincia != value))
-				{
-					this._Provincia = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Canton
-		{
-			get
-			{
-				return this._Canton;
-			}
-			set
-			{
-				if ((this._Canton != value))
-				{
-					this._Canton = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string Distrito
-		{
-			get
-			{
-				return this._Distrito;
-			}
-			set
-			{
-				if ((this._Distrito != value))
-				{
-					this._Distrito = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ExisteUsuarioResult
 	{
 		
@@ -2990,6 +2175,596 @@ namespace DAL
 		}
 	}
 	
+	public partial class CantonesResult
+	{
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Nombre;
+		
+		public CantonesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultaClienteResult
+	{
+		
+		private int _IdCliente;
+		
+		private int _IdTipoIdentificacion;
+		
+		private string _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Apellido1;
+		
+		private string _Apellido2;
+		
+		private string _Correo;
+		
+		private string _Telefono;
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Distrito;
+		
+		private bool _Estado;
+		
+		public ConsultaClienteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCliente", DbType="Int NOT NULL")]
+		public int IdCliente
+		{
+			get
+			{
+				return this._IdCliente;
+			}
+			set
+			{
+				if ((this._IdCliente != value))
+				{
+					this._IdCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoIdentificacion", DbType="Int NOT NULL")]
+		public int IdTipoIdentificacion
+		{
+			get
+			{
+				return this._IdTipoIdentificacion;
+			}
+			set
+			{
+				if ((this._IdTipoIdentificacion != value))
+				{
+					this._IdTipoIdentificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Apellido1
+		{
+			get
+			{
+				return this._Apellido1;
+			}
+			set
+			{
+				if ((this._Apellido1 != value))
+				{
+					this._Apellido1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido2", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Apellido2
+		{
+			get
+			{
+				return this._Apellido2;
+			}
+			set
+			{
+				if ((this._Apellido2 != value))
+				{
+					this._Apellido2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(3) NOT NULL", CanBeNull=false)]
+		public string Distrito
+		{
+			get
+			{
+				return this._Distrito;
+			}
+			set
+			{
+				if ((this._Distrito != value))
+				{
+					this._Distrito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarClienteResult
+	{
+		
+		private int _IdCliente;
+		
+		private int _IdTipoIdentificacion;
+		
+		private string _Identificacion;
+		
+		private string _Nombre;
+		
+		private string _Apellido1;
+		
+		private string _Apellido2;
+		
+		private string _Correo;
+		
+		private string _Telefono;
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Distrito;
+		
+		private bool _Estado;
+		
+		public ConsultarClienteResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCliente", DbType="Int NOT NULL")]
+		public int IdCliente
+		{
+			get
+			{
+				return this._IdCliente;
+			}
+			set
+			{
+				if ((this._IdCliente != value))
+				{
+					this._IdCliente = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTipoIdentificacion", DbType="Int NOT NULL")]
+		public int IdTipoIdentificacion
+		{
+			get
+			{
+				return this._IdTipoIdentificacion;
+			}
+			set
+			{
+				if ((this._IdTipoIdentificacion != value))
+				{
+					this._IdTipoIdentificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Apellido1
+		{
+			get
+			{
+				return this._Apellido1;
+			}
+			set
+			{
+				if ((this._Apellido1 != value))
+				{
+					this._Apellido1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido2", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Apellido2
+		{
+			get
+			{
+				return this._Apellido2;
+			}
+			set
+			{
+				if ((this._Apellido2 != value))
+				{
+					this._Apellido2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(3) NOT NULL", CanBeNull=false)]
+		public string Distrito
+		{
+			get
+			{
+				return this._Distrito;
+			}
+			set
+			{
+				if ((this._Distrito != value))
+				{
+					this._Distrito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class DistritosResult
+	{
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Distrito;
+		
+		private string _Nombre;
+		
+		public DistritosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(3) NOT NULL", CanBeNull=false)]
+		public string Distrito
+		{
+			get
+			{
+				return this._Distrito;
+			}
+			set
+			{
+				if ((this._Distrito != value))
+				{
+					this._Distrito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
 	public partial class ProvinciasResult
 	{
 		
@@ -3029,6 +2804,1238 @@ namespace DAL
 				if ((this._Nombre != value))
 				{
 					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarDistritosResult
+	{
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Distrito;
+		
+		private string _Nombre;
+		
+		public ConsultarDistritosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(3) NOT NULL", CanBeNull=false)]
+		public string Distrito
+		{
+			get
+			{
+				return this._Distrito;
+			}
+			set
+			{
+				if ((this._Distrito != value))
+				{
+					this._Distrito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarCantonesResult
+	{
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Nombre;
+		
+		public ConsultarCantonesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this._Nombre = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarProveedorResult
+	{
+		
+		private int _IdProveedor;
+		
+		private string _NombreProveedor;
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Distrito;
+		
+		private string _Telefono;
+		
+		private string _Correo;
+		
+		private bool _Estado;
+		
+		public ConsultarProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProveedor", DbType="Int NOT NULL")]
+		public int IdProveedor
+		{
+			get
+			{
+				return this._IdProveedor;
+			}
+			set
+			{
+				if ((this._IdProveedor != value))
+				{
+					this._IdProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProveedor", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string NombreProveedor
+		{
+			get
+			{
+				return this._NombreProveedor;
+			}
+			set
+			{
+				if ((this._NombreProveedor != value))
+				{
+					this._NombreProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(3) NOT NULL", CanBeNull=false)]
+		public string Distrito
+		{
+			get
+			{
+				return this._Distrito;
+			}
+			set
+			{
+				if ((this._Distrito != value))
+				{
+					this._Distrito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultaProveedorResult
+	{
+		
+		private int _IdProveedor;
+		
+		private string _NombreProveedor;
+		
+		private char _Provincia;
+		
+		private string _Canton;
+		
+		private string _Distrito;
+		
+		private string _Telefono;
+		
+		private string _Correo;
+		
+		private bool _Estado;
+		
+		public ConsultaProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProveedor", DbType="Int NOT NULL")]
+		public int IdProveedor
+		{
+			get
+			{
+				return this._IdProveedor;
+			}
+			set
+			{
+				if ((this._IdProveedor != value))
+				{
+					this._IdProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProveedor", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string NombreProveedor
+		{
+			get
+			{
+				return this._NombreProveedor;
+			}
+			set
+			{
+				if ((this._NombreProveedor != value))
+				{
+					this._NombreProveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provincia", DbType="Char(1) NOT NULL")]
+		public char Provincia
+		{
+			get
+			{
+				return this._Provincia;
+			}
+			set
+			{
+				if ((this._Provincia != value))
+				{
+					this._Provincia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Canton", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string Canton
+		{
+			get
+			{
+				return this._Canton;
+			}
+			set
+			{
+				if ((this._Canton != value))
+				{
+					this._Canton = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Distrito", DbType="Char(3) NOT NULL", CanBeNull=false)]
+		public string Distrito
+		{
+			get
+			{
+				return this._Distrito;
+			}
+			set
+			{
+				if ((this._Distrito != value))
+				{
+					this._Distrito = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarUsuarioResult
+	{
+		
+		private int _IdUsuario;
+		
+		private string _Usuario;
+		
+		private string _Clave;
+		
+		private bool _Estado;
+		
+		public ConsultarUsuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Int NOT NULL")]
+		public int IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarRolUsuarioResult
+	{
+		
+		private int _IdRol;
+		
+		private int _IdUsuario;
+		
+		public ConsultarRolUsuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRol", DbType="Int NOT NULL")]
+		public int IdRol
+		{
+			get
+			{
+				return this._IdRol;
+			}
+			set
+			{
+				if ((this._IdRol != value))
+				{
+					this._IdRol = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Int NOT NULL")]
+		public int IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+	}
+	
+	public partial class AgregarUsuarioResult
+	{
+		
+		private int _IdUsuario;
+		
+		private string _Usuario;
+		
+		private string _Clave;
+		
+		private bool _Estado;
+		
+		public AgregarUsuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Int NOT NULL")]
+		public int IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					this._IdUsuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this._Clave = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarReporteVentasResult
+	{
+		
+		private string _Cedula;
+		
+		private string _Identificacion;
+		
+		private System.DateTime _Fecha;
+		
+		private string _Tipo;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private System.Nullable<double> _Impuesto;
+		
+		private double _Total;
+		
+		private string _NombreProducto;
+		
+		private double _CostoProducto;
+		
+		public ConsultarReporteVentasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cedula", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Cedula
+		{
+			get
+			{
+				return this._Cedula;
+			}
+			set
+			{
+				if ((this._Cedula != value))
+				{
+					this._Cedula = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="Date NOT NULL")]
+		public System.DateTime Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Impuesto", DbType="Float")]
+		public System.Nullable<double> Impuesto
+		{
+			get
+			{
+				return this._Impuesto;
+			}
+			set
+			{
+				if ((this._Impuesto != value))
+				{
+					this._Impuesto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProducto", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string NombreProducto
+		{
+			get
+			{
+				return this._NombreProducto;
+			}
+			set
+			{
+				if ((this._NombreProducto != value))
+				{
+					this._NombreProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostoProducto", DbType="Float NOT NULL")]
+		public double CostoProducto
+		{
+			get
+			{
+				return this._CostoProducto;
+			}
+			set
+			{
+				if ((this._CostoProducto != value))
+				{
+					this._CostoProducto = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultarVentaResult
+	{
+		
+		private int _IdVenta;
+		
+		private string _Cedula;
+		
+		private string _Identificacion;
+		
+		private System.Nullable<int> _IdProducto;
+		
+		private System.Nullable<int> _IdCita;
+		
+		private System.DateTime _Fecha;
+		
+		private string _Tipo;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private System.Nullable<double> _Impuesto;
+		
+		private double _Total;
+		
+		private bool _Estado;
+		
+		public ConsultarVentaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdVenta", DbType="Int NOT NULL")]
+		public int IdVenta
+		{
+			get
+			{
+				return this._IdVenta;
+			}
+			set
+			{
+				if ((this._IdVenta != value))
+				{
+					this._IdVenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cedula", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Cedula
+		{
+			get
+			{
+				return this._Cedula;
+			}
+			set
+			{
+				if ((this._Cedula != value))
+				{
+					this._Cedula = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProducto", DbType="Int")]
+		public System.Nullable<int> IdProducto
+		{
+			get
+			{
+				return this._IdProducto;
+			}
+			set
+			{
+				if ((this._IdProducto != value))
+				{
+					this._IdProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCita", DbType="Int")]
+		public System.Nullable<int> IdCita
+		{
+			get
+			{
+				return this._IdCita;
+			}
+			set
+			{
+				if ((this._IdCita != value))
+				{
+					this._IdCita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="Date NOT NULL")]
+		public System.DateTime Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Impuesto", DbType="Float")]
+		public System.Nullable<double> Impuesto
+		{
+			get
+			{
+				return this._Impuesto;
+			}
+			set
+			{
+				if ((this._Impuesto != value))
+				{
+					this._Impuesto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ConsultaVentaResult
+	{
+		
+		private int _IdVenta;
+		
+		private string _Cedula;
+		
+		private string _Identificacion;
+		
+		private System.Nullable<int> _IdProducto;
+		
+		private System.Nullable<int> _IdCita;
+		
+		private System.DateTime _Fecha;
+		
+		private string _Tipo;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private System.Nullable<double> _Impuesto;
+		
+		private double _Total;
+		
+		private bool _Estado;
+		
+		public ConsultaVentaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdVenta", DbType="Int NOT NULL")]
+		public int IdVenta
+		{
+			get
+			{
+				return this._IdVenta;
+			}
+			set
+			{
+				if ((this._IdVenta != value))
+				{
+					this._IdVenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cedula", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Cedula
+		{
+			get
+			{
+				return this._Cedula;
+			}
+			set
+			{
+				if ((this._Cedula != value))
+				{
+					this._Cedula = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Identificacion", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Identificacion
+		{
+			get
+			{
+				return this._Identificacion;
+			}
+			set
+			{
+				if ((this._Identificacion != value))
+				{
+					this._Identificacion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdProducto", DbType="Int")]
+		public System.Nullable<int> IdProducto
+		{
+			get
+			{
+				return this._IdProducto;
+			}
+			set
+			{
+				if ((this._IdProducto != value))
+				{
+					this._IdProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCita", DbType="Int")]
+		public System.Nullable<int> IdCita
+		{
+			get
+			{
+				return this._IdCita;
+			}
+			set
+			{
+				if ((this._IdCita != value))
+				{
+					this._IdCita = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="Date NOT NULL")]
+		public System.DateTime Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this._Tipo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Impuesto", DbType="Float")]
+		public System.Nullable<double> Impuesto
+		{
+			get
+			{
+				return this._Impuesto;
+			}
+			set
+			{
+				if ((this._Impuesto != value))
+				{
+					this._Impuesto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this._Estado = value;
 				}
 			}
 		}

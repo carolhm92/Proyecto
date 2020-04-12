@@ -67,6 +67,8 @@
     <Compile Include="clsBitacora.cs" />
     <Compile Include="clsCita.cs" />
     <Compile Include="clsInformacion.cs" />
+    <Compile Include="clsRol.cs" />
+    <Compile Include="clsVenta.cs" />
     <Compile Include="clsMascota.cs" />
     <Compile Include="clsProveedor.cs" />
     <Compile Include="clsTipoIdentificacion.cs" />

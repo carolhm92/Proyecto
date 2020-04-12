@@ -13,7 +13,9 @@ namespace Consola
             string lte = "~/Scripts/adminlte/";
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
-                .Include(ltecomponents + "jquery/dist/jquery.min.js"));
+                .Include("~/Scripts/jquery-3.4.1.min.js")
+                .Include("~/Scripts/jquery.validate.min.js")
+                .Include("~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/lib")
                 .Include(ltecomponents + "jquery-ui/jquery-ui.min.js")

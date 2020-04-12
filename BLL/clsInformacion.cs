@@ -27,5 +27,18 @@ namespace BLL
             List<DistritosResult> datos = db.Distritos(Provincia,Canton).ToList();
             return datos;
         }
+
+        public List<ConsultarCantonesResult> ObtenerCantones()
+        {
+            DatosDataContext db = new DatosDataContext();
+            List<ConsultarCantonesResult> datos = db.ConsultarCantones().ToList();
+            return datos;
+        }
+        public List<ConsultarDistritosResult> ObtenerDistritos()
+        {
+            DatosDataContext db = new DatosDataContext();
+            List<ConsultarDistritosResult> datos = db.ConsultarDistritos().ToList();
+            return datos;
+        }
     }
 }

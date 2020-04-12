@@ -22,26 +22,19 @@ namespace Consola.Controllers
     public class MascotaController : Controller
     {
         clsBitacora bitacora = new clsBitacora();
+
         // GET: Mascota
         public async Task<ActionResult> Index()
         {
             ApiCall api = new ApiCall(Session);
-            try
+            var response = await api.GetAsync("/api/Mascota");
+            if (response.IsSuccessStatusCode)
             {
-                var response = await api.GetAsync("/api/Mascota");
-                if (response.IsSuccessStatusCode)
-                {
-                    var datastring = await response.Content.ReadAsStringAsync();
-                    var mascotas = JsonConvert.DeserializeObject<List<Mascota>>(datastring);
-                    return View(mascotas);
-                }
+                var datastring = await response.Content.ReadAsStringAsync();
+                var mascotas = JsonConvert.DeserializeObject<List<Mascota>>(datastring).FindAll(c => c.Estado);
+                return View(mascotas);
             }
-            catch (Exception ex)
-            {
-                bitacora.AgregarBitacora("Mascota", "Index", ex.Message, Session["US"].ToString(), 2);
-                return View(new List<Mascota>());
-            }
-            // errores
+            bitacora.AgregarBitacora("Mascota", "Index", "No se pudo obtener datos", Session["US"].ToString(), 2);
             return View(new List<Mascota>());
         }
 
@@ -67,15 +60,7 @@ namespace Consola.Controllers
         // GET: Mascota/Create
         public async Task<ActionResult> Create()
         {
-            ApiCall api = new ApiCall(Session);
-            List<Cliente> clientes = new List<Cliente>();
-            var resultclient = await api.GetAsync("/api/Client");
-            if (resultclient.IsSuccessStatusCode)
-            {
-                var datastring = resultclient.Content.ReadAsStringAsync().Result;
-                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
-            }
-            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            await ObtenerClientes();
             return View();
         }
 
@@ -91,14 +76,7 @@ namespace Consola.Controllers
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
             }
-            List<Cliente> clientes = new List<Cliente>();
-            var resultclient = await api.GetAsync("/api/Client");
-            if (resultclient.IsSuccessStatusCode)
-            {
-                var datastring = resultclient.Content.ReadAsStringAsync().Result;
-                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
-            }
-            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            await ObtenerClientes();
             bitacora.AgregarBitacora("Mascota", "Create", "No se creo", Session["US"].ToString(), 2);
             return View(mascota);
         }
@@ -109,18 +87,9 @@ namespace Consola.Controllers
             ApiCall api = new ApiCall(Session);
             var result = await api.GetAsync("/api/Mascota/" + id);
             Mascota mascota = null;
-            List<Cliente> clientes = new List<Cliente>();
-            var resultclient = await api.GetAsync("/api/Client");
-            string datastring;
-            if (resultclient.IsSuccessStatusCode)
-            {
-                datastring = resultclient.Content.ReadAsStringAsync().Result;
-                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
-            }
-            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
             if (result.IsSuccessStatusCode)
             {
-                datastring = result.Content.ReadAsStringAsync().Result;
+                var datastring = result.Content.ReadAsStringAsync().Result;
                 mascota = JsonConvert.DeserializeObject<Mascota>(datastring);
             }
             if (mascota == null)
@@ -128,6 +97,7 @@ namespace Consola.Controllers
                 bitacora.AgregarBitacora("Mascota", "Edit", "No se encontro", Session["US"].ToString(), 2);
                 return HttpNotFound();
             }
+            await ObtenerClientes();
             return View(mascota);
         }
 
@@ -136,22 +106,14 @@ namespace Consola.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Mascota mascota)
         {
-            List<Cliente> clientes = new List<Cliente>();
             ApiCall api = new ApiCall(Session);
-            string datastring;
             if (ModelState.IsValid)
             {
                 var result = await api.PutAsync("/api/Mascota/" + mascota.IdMascota, mascota);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
             }
-            var resultclient = await api.GetAsync("/api/Client");
-            if (resultclient.IsSuccessStatusCode)
-            {
-                datastring = resultclient.Content.ReadAsStringAsync().Result;
-                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
-            }
-            ViewBag.Clientes = new SelectList(clientes, "IdCliente", "Identificacion");
+            await ObtenerClientes();
             bitacora.AgregarBitacora("Mascota", "Edit", "No se edito", Session["US"].ToString(), 2);
             return View(mascota);
         }
@@ -186,6 +148,20 @@ namespace Consola.Controllers
                 return RedirectToAction("Index");
             bitacora.AgregarBitacora("Mascota", "Delete", "No se elimino", Session["US"].ToString(), 2);
             return HttpNotFound();
+        }
+
+        private async Task<List<Cliente>> ObtenerClientes()
+        {
+            ApiCall api = new ApiCall(Session);
+            List<Cliente> clientes = new List<Cliente>();
+            var resultclient = await api.GetAsync("/api/Client");
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring);
+            }
+            ViewBag.Clientes = new SelectList(clientes.FindAll(c => c.Estado), "IdCliente", "Identificacion");
+            return clientes;
         }
     }
 }

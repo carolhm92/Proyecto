@@ -38,7 +38,7 @@ namespace API_Proyecto.Controllers
 
         // PUT: api/Institucion/5
         [ResponseType(typeof(bool))]
-        public IHttpActionResult PutInstitucion(int id, Institucion institucion)
+        public IHttpActionResult PutInstitucion(int id, Instituciones institucion)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +52,7 @@ namespace API_Proyecto.Controllers
             bool result;
             try
             {
-                result = db.ActualizarInstitucion(institucion.IdInstitucion, institucion.Institucion1, institucion.IdTipoIdentitifcacion, institucion.Identificacion, institucion.Telefono, institucion.Direccion);
+                result = db.ActualizarInstitucion(institucion.IdInstitucion, institucion.Institucion, institucion.IdTipoIdentitifcacion, institucion.Identificacion, institucion.Telefono, institucion.Direccion);
             }
             catch (Exception ex)
             {
@@ -63,8 +63,8 @@ namespace API_Proyecto.Controllers
         }
 
         // POST: api/Institucion
-        [ResponseType(typeof(Institucion))]
-        public IHttpActionResult PostInstitucion(Institucion institucion)
+        [ResponseType(typeof(Instituciones))]
+        public IHttpActionResult PostInstitucion(Instituciones institucion)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace API_Proyecto.Controllers
 
             try
             {
-                if (db.AgregarInstitucion(institucion.IdInstitucion, institucion.Institucion1, institucion.IdTipoIdentitifcacion, institucion.Identificacion, institucion.Telefono, institucion.Direccion))
+                if (db.AgregarInstitucion(institucion.Institucion, institucion.IdTipoIdentitifcacion, institucion.Identificacion, institucion.Telefono, institucion.Direccion))
                     return Created(Url.Request.RequestUri, institucion);
             }
             catch (Exception ex)
