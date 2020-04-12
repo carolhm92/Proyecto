@@ -6,6 +6,7 @@ namespace Consola.Models
 {
     public class Producto
     {
+        [DisplayName("Id Producto")]
         public int IdProducto { get; set; }
         [DisplayName("Producto")]
         public string NombreProducto { get; set; }
