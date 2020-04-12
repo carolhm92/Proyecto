@@ -29,9 +29,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Total)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
         <th></th>
     </tr>
 
@@ -44,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Identificacion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdProducto)
+            @Html.DisplayFor(modelItem => item.Producto_Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IdCita)
@@ -54,9 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdVenta }) |

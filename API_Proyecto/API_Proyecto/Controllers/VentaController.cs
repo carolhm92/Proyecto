@@ -14,120 +14,88 @@ namespace API_Proyecto.Controllers
 {
     public class VentaController : ApiController
     {
-        //private ProyectoCarolEntities db = new ProyectoCarolEntities();
+        private clsVenta db = new clsVenta();
 
-        //// GET: api/Venta
-        //public IQueryable<Venta> GetVenta()
-        //{
-        //    return db.Venta;
-        //}
+        // GET: api/Venta
+        public IEnumerable<ConsultarVentaResult> GetVenta()
+        {
+            return db.ConsultarVenta();
+        }
 
-        //// GET: api/Venta/5
-        //[ResponseType(typeof(Venta))]
-        //public IHttpActionResult GetVenta(int id)
-        //{
-        //    Venta venta = db.Venta.Find(id);
-        //    if (venta == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: api/Venta/5
+        [ResponseType(typeof(ConsultaVentaResult))]
+        public IHttpActionResult GetVenta(int id)
+        {
+            ConsultaVentaResult venta = db.ConsultaVenta(id);
+            if (venta == null)
+            {
+                return NotFound();
+            }
 
-        //    return Ok(venta);
-        //}
+            return Ok(venta);
+        }
 
-        //// PUT: api/Venta/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutVenta(int id, Venta venta)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // PUT: api/Venta/5
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult PutVenta(int id, Venta venta)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != venta.IdVenta)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != venta.IdVenta)
+            {
+                return BadRequest();
+            }
+            bool result;
+            try
+            {
+                result = db.ActualizarVenta(venta.IdVenta, venta.Cedula, venta.Identificacion, venta.IdProducto, venta.IdCita, venta.Fecha, venta.Total);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-        //    db.Entry(venta).State = EntityState.Modified;
+            return Ok(result);
+        }
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!VentaExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+        // POST: api/Venta
+        [ResponseType(typeof(Venta))]
+        public IHttpActionResult PostVenta(Venta venta)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            try
+            {
+                if (db.AgregarVenta(venta.Cedula, venta.Identificacion, venta.IdProducto, venta.IdCita, venta.Fecha, venta.Total))
+                    return Created(Url.Request.RequestUri, venta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return NotFound();
+        }
 
-        //// POST: api/Venta
-        //[ResponseType(typeof(Venta))]
-        //public IHttpActionResult PostVenta(Venta venta)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Venta.Add(venta);
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (VentaExists(venta.IdVenta))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return CreatedAtRoute("DefaultApi", new { id = venta.IdVenta }, venta);
-        //}
-
-        //// DELETE: api/Venta/5
-        //[ResponseType(typeof(Venta))]
-        //public IHttpActionResult DeleteVenta(int id)
-        //{
-        //    Venta venta = db.Venta.Find(id);
-        //    if (venta == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    db.Venta.Remove(venta);
-        //    db.SaveChanges();
-
-        //    return Ok(venta);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
-        //private bool VentaExists(int id)
-        //{
-        //    return db.Venta.Count(e => e.IdVenta == id) > 0;
-        //}
+        // DELETE: api/Venta/5
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult DeleteVenta(int id)
+        {
+            try
+            {
+                if (db.EliminarVenta(id))
+                    return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return NotFound();
+        }
     }
 }

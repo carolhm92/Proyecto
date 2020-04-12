@@ -35,8 +35,14 @@
                     <li><a href="@Url.Action("Index", "Mascota")">Mascotas</a></li>
                     <li><a href="@Url.Action("Index", "Producto")">Productos</a></li>
                     <li><a href="@Url.Action("Index", "Proveedor")">Proveedores</a></li>
+                    <li><a href="@Url.Action("Index", "Tratamiento")">Tratamientos</a></li>
+                    <li><a href="@Url.Action("Index", "Venta")">Ventas</a></li>
+                    <li><a href="@Url.Action("Index", "Usuario")">Usuarios</a></li>
                     <li><a href="@Url.Action("Index", "TipoIdentificacion")">Tipos Identificación</a></li>
                 </ul>
+            </li>
+            <li class="@Html.IsSelected("Salir", "Login")">
+                <a href="@Url.Action("Salir", "Login")"><i class="fa fa-link"></i> <span>Cerrar Sesión</span></a>
             </li>
         </ul>
     </section>

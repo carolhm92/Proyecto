@@ -37,7 +37,7 @@ namespace API_Proyecto.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
             clsUsuario Objusuario = new clsUsuario();
-            var usuario = Objusuario.ConsultarUsuario(login.UserName, login.Password).Where(x => x.Estado == true);
+            var usuario = Objusuario.ExisteUsuario(login.UserName, login.Password).Where(x => x.Estado == true);
 
             if (usuario.Count() > 0)
             {
