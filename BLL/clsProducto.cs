@@ -71,7 +71,7 @@ namespace BLL
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                dc.EliminaCliente(IdProducto);
+                dc.EliminaProducto(IdProducto);
                 return true;
             }
             catch 

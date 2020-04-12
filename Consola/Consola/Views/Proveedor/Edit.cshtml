@@ -1,4 +1,5 @@
-﻿@model Consola.Models.Proveedor
+﻿@using Consola.Models
+@model Consola.Models.Proveedor
 
 @{
     ViewBag.Title = "Edit";
@@ -9,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Proveedor</h4>
         <hr />
@@ -27,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Provincia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Provincia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Provincia, (SelectList)ViewBag.Provincias, htmlAttributes: new { @class = "form-control", @id = "Provincia" })
                 @Html.ValidationMessageFor(model => model.Provincia, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Canton, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Canton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Canton, (SelectList)ViewBag.Cantones, htmlAttributes: new { @class = "form-control", @id = "Canton" })
                 @Html.ValidationMessageFor(model => model.Canton, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Distrito, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Distrito, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Distrito, (SelectList)ViewBag.Distritos, htmlAttributes: new { @class = "form-control", @id = "Distrito" })
                 @Html.ValidationMessageFor(model => model.Distrito, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -65,16 +66,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Estado)
-                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -85,3 +76,46 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts {
+    <script type="text/javascript">
+        $("#Provincia").change(function () {
+            $("#Canton").empty();
+            $("#Distrito").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CargaCantones")',
+                dataType: 'json',
+                data: { provincia: $("#Provincia").val() },
+                success: function (cantones) {
+                    $("#Canton").append("<option value=''>--Seleccione--</option>");
+                    $.each(cantones, function (i, canton) {
+                        $("#Canton").append('<option value="' + canton.Canton + '">' + canton.Nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Fallo al cargar los cantones : ' + ex);
+                }
+            });
+        });
+        $("#Canton").change(function () {
+            $("#Distrito").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CargaDistritos")',
+                dataType: 'json',
+                data: { provincia: $("#Provincia").val(), canton: $("#Canton").val() },
+                success: function (distritos) {
+                    $("#Distrito").append("<option value=''>--Seleccione--</option>");
+                    $.each(distritos, function (i, distrito) {
+                        $("#Distrito").append('<option value="' + distrito.Distrito + '">' + distrito.Nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Fallo al cargar los distritos : ' + ex);
+                }
+            });
+        });
+
+    </script>
+}

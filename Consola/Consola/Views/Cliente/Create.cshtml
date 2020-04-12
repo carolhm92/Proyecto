@@ -1,0 +1,177 @@
+﻿@using Consola.Models
+@model Consola.Models.Cliente
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>Crear</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Cliente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Identificacion, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <button id="buscarpersona" class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdTipoIdentificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdTipoIdentificacion, (SelectList)ViewBag.TiposIdentificaciones, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdTipoIdentificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", id = "Nombre" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Apellido1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Apellido1, new { htmlAttributes = new { @class = "form-control", id = "Apellido1" } })
+                @Html.ValidationMessageFor(model => model.Apellido1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Apellido2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Apellido2, new { htmlAttributes = new { @class = "form-control", id= "Apellido2" } })
+                @Html.ValidationMessageFor(model => model.Apellido2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Provincia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Provincia, (SelectList)ViewBag.Provincias, htmlAttributes: new { @class = "form-control", @id = "Provincia" } )
+                @Html.ValidationMessageFor(model => model.Provincia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Canton, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Canton, new SelectList(new List<Cantones>(), "Canton", "Nombre"), htmlAttributes: new { @class = "form-control", @id = "Canton" } )
+                @Html.ValidationMessageFor(model => model.Canton, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Distrito, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Distrito, new SelectList(new List<Distritos>(), "Distrito", "Nombre"), htmlAttributes: new { @class = "form-control", @id = "Distrito" })
+                @Html.ValidationMessageFor(model => model.Distrito, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+   
+        $("#buscarpersona").click(function () {
+            $("#Nombre").empty();
+            $("#Apellido1").empty();
+            $("#Apellido2").empty();
+            let id = $("#Identificacion").val();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ConsultaPersona")',
+                dataType: 'json',
+                data: { identificacion: id },
+                success: function (resultado) {
+                    $("#Nombre").val(resultado.Nombre);
+                    $("#Apellido1").val(resultado.ApellidoP);
+                    $("#Apellido2").val(resultado.ApellidoM);
+                },
+                error: function (ex) {
+                    alert('Fallo al consultar los datos : ' + ex);
+                }
+            });
+        });
+
+        $("#Provincia").change(function () {
+            $("#Canton").empty();
+            $("#Distrito").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CargaCantones")',
+                dataType: 'json',
+                data: { provincia: $("#Provincia").val() },
+                success: function (cantones) {
+                    $("#Canton").append("<option value=''>--Seleccione--</option>");
+                    $.each(cantones, function (i, canton) {
+                        $("#Canton").append('<option value="' + canton.Canton + '">' + canton.Nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Fallo al cargar los cantones : ' + ex);
+                }
+            });
+        });
+        $("#Canton").change(function () {
+            $("#Distrito").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CargaDistritos")',
+                dataType: 'json',
+                data: { provincia: $("#Provincia").val(), canton: $("#Canton").val() },
+                success: function (distritos) {
+                    $("#Distrito").append("<option value=''>--Seleccione--</option>");
+                    $.each(distritos, function (i, distrito) {
+                        $("#Distrito").append('<option value="' + distrito.Distrito + '">' + distrito.Nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Fallo al cargar los distritos : ' + ex);
+                }
+            });
+        });
+    
+    </script>
+}

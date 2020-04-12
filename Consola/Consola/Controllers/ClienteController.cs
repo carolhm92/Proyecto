@@ -13,343 +13,290 @@ using System.Net.Http.Headers;
 using System.Configuration;
 using Newtonsoft.Json;
 using System.Net;
+using System.Threading.Tasks;
+using Consola.Helpers;
 
 namespace Consola.Controllers
 {
-    //[Authorize]
+    [SessionManage]
     public class ClienteController : Controller
     {
-        clsInformacion Informacion = new clsInformacion();
+        clsBitacora bitacora = new clsBitacora();
+
         // GET: Cliente
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            try
+            ApiCall api = new ApiCall(Session);
+            var response = await api.GetAsync("/api/Cliente");
+            if (response.IsSuccessStatusCode)
             {
-                if (User.Identity.IsAuthenticated)
-                {
-                    List<Cliente> listaCliente = new List<Cliente>();
-                    clsCliente cliente = new clsCliente();
-                    var data = cliente.ConsultarCliente().ToList();
-
-                    foreach (var item in data)
-                    {
-                        Cliente modelo = new Cliente();
-                        modelo.IdCliente = item.IdCliente;
-                        modelo.IdTipoIdentificacion = item.IdTipoIdentificacion;
-                        modelo.Identificacion = item.Identificacion;
-                        modelo.Nombre = item.Nombre;
-                        modelo.Apellido1 = item.Apellido1;
-                        modelo.Apellido2 = item.Apellido2;
-                        modelo.Correo = item.Correo;
-                        modelo.Telefono = item.Telefono;
-                        modelo.Provincia = item.Provincia;
-                        modelo.Canton = item.Canton;
-                        modelo.Distrito = item.Distrito;
-                        modelo.Estado = item.Estado;
-
-                        listaCliente.Add(modelo);
-
-                    }
-                return View(listaCliente);
-                }
-                else
-                {
-                    return RedirectToAction("Login", "Login");
-                }
+                var datastring = await response.Content.ReadAsStringAsync();
+                var clientes = JsonConvert.DeserializeObject<List<Cliente>>(datastring).FindAll(c => c.Estado);
+                clientes = await LLenarDatos(clientes);
+                return View(clientes);
             }
-            catch
+            bitacora.AgregarBitacora("Cliente", "Index", "No se pudo obtener datos", Session["US"].ToString(), 2);
+            return View(new List<Cliente>());
+        }
+
+        // GET: Cliente/Details/5
+        public async Task<ActionResult> Details(int id)
+        {
+            ApiCall api = new ApiCall(Session);
+            var result = await api.GetAsync("/api/Cliente/" + id);
+            Cliente cliente = null;
+            if (result.IsSuccessStatusCode)
             {
-                string descMsg = "Error consultando la informacion del CLiente.";
-                //Bitacora
-                return RedirectToAction("Error", "Error");
+                var datastring = result.Content.ReadAsStringAsync().Result;
+                cliente = JsonConvert.DeserializeObject<Cliente>(datastring);
+                List<Cliente> clientes = await LLenarDatos(new List<Cliente>() { cliente });
+                cliente = clientes.First();
             }
+            if (cliente == null)
+            {
+                bitacora.AgregarBitacora("Cliente", "Details", "No existe", Session["US"].ToString(), 2);
+                return View(new Cliente());
+            }
+            return View(cliente);
         }
 
         // GET: Cliente/Create
-        public ActionResult Crear()
+        public async Task<ActionResult> Create()
         {
-            try
-            {
-                clsTipoIdentificacion tiposIdentificacion = new clsTipoIdentificacion();
-                ViewBag.ListaSexo = new SelectList(new[] {
-                                   new SelectListItem { Value = "H", Text = "Hombre" },
-                                   new SelectListItem { Value = "M", Text = "Mujer" }
-                                                               }, "Value", "Text");
-                ViewBag.ListaEstados = new SelectList(new[] {
-                                   new SelectListItem { Value = "1", Text = "Activo" },
-                                   new SelectListItem { Value = "0", Text = "Inactivo" }
-                                                               }, "Value", "Text");
-                ViewBag.ListaProvincias = CargaProvincias();
-                ViewBag.ListaTiposIdentificacion = tiposIdentificacion.ConsultarTipoIdentificacion();
-                return View();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
+            await ObtenerProvincias();
+            await ObtenerTipoIdentificaciones();
+            return View();
         }
 
-        // POST: Cliente/Crear
+        // POST: Cliente/Create
         [HttpPost]
-        public ActionResult Crear(Cliente cliente)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Cliente cliente)
         {
-            try
+            ApiCall api = new ApiCall(Session);
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    if (!Utilerias.ValidarCorreo(cliente.Correo))
-                    {
-
-                    }
-                    clsCliente Objcliente = new clsCliente();
-                    bool Resultado = Objcliente.AgregarCliente(cliente.IdTipoIdentificacion, cliente.Identificacion,
-                        cliente.Nombre, cliente.Apellido1, cliente.Apellido2, cliente.Correo, cliente.Telefono,
-                        cliente.Provincia, cliente.Canton, cliente.Distrito);
-
-                    if (Resultado)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        clsTipoIdentificacion tiposIdentificacion = new clsTipoIdentificacion();
-                        ViewBag.ListaSexo = new SelectList(new[] {
-                                       new SelectListItem { Value = "H", Text = "Hombre" },
-                                       new SelectListItem { Value = "M", Text = "Mujer" }
-                                                                   }, "Value", "Text");
-                        ViewBag.ListaEstados = new SelectList(new[] {
-                                   new SelectListItem { Value = "1", Text = "Activo" },
-                                   new SelectListItem { Value = "0", Text = "Inactivo" }
-                                                               }, "Value", "Text");
-                        ViewBag.ListaProvincias = CargaProvincias();
-                        ViewBag.ListaTiposIdentificacion = tiposIdentificacion.ConsultarTipoIdentificacion();
-                        return View("Crear");
-                    }
-                }
-                else
-                {
-                    clsTipoIdentificacion tiposIdentificacion = new clsTipoIdentificacion();
-                    ViewBag.ListaSexo = new SelectList(new[] {
-                                   new SelectListItem { Value = "H", Text = "Hombre" },
-                                   new SelectListItem { Value = "M", Text = "Mujer" }
-                                                               }, "Value", "Text");
-                    ViewBag.ListaEstados = new SelectList(new[] {
-                                   new SelectListItem { Value = "1", Text = "Activo" },
-                                   new SelectListItem { Value = "0", Text = "Inactivo" }
-                                                               }, "Value", "Text");
-                    ViewBag.ListaProvincias = CargaProvincias();
-                    ViewBag.ListaTiposIdentificacion = tiposIdentificacion.ConsultarTipoIdentificacion();
-                    return View("Crear");
-                }
-
-
+                var result = await api.PostAsync("/api/Cliente", cliente);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            await ObtenerProvincias();
+            await ObtenerTipoIdentificaciones();
+            bitacora.AgregarBitacora("Cliente", "Create", "No se creo", Session["US"].ToString(), 2);
+            return View(cliente);
         }
 
-        // GET: Cliente/Editar/5
-        public ActionResult Editar(int id)
+        // GET: Cliente/Edit/5
+        public async Task<ActionResult> Edit(int id)
         {
-            try
+            ApiCall api = new ApiCall(Session);
+            var result = await api.GetAsync("/api/Cliente/" + id);
+            Cliente cliente = null;
+            if (result.IsSuccessStatusCode)
             {
-                clsTipoIdentificacion tiposIdentificacion = new clsTipoIdentificacion();
-                clsCliente cliente = new clsCliente();
-                ViewBag.ListaSexo = new SelectList(new[] {
-                                   new SelectListItem { Value = "H", Text = "Hombre" },
-                                   new SelectListItem { Value = "M", Text = "Mujer" }
-                                                               }, "Value", "Text");
-                ViewBag.ListaEstados = new SelectList(new[] {
-                                   new SelectListItem { Value = "1", Text = "Activo" },
-                                   new SelectListItem { Value = "0", Text = "Inactivo" }
-                                                               }, "Value", "Text");
-                var dato = cliente.ConsultaCliente(id);
-
-                Cliente modelo = new Cliente();
-                modelo.IdCliente = dato.IdCliente;
-                modelo.IdTipoIdentificacion = dato.IdTipoIdentificacion;
-                modelo.Identificacion = dato.Identificacion;
-                modelo.Nombre = dato.Nombre;
-                modelo.Apellido1 = dato.Apellido1;
-                modelo.Apellido2 = dato.Apellido2;
-                modelo.Correo = dato.Correo;
-                modelo.Telefono = dato.Telefono;
-                modelo.Provincia = dato.Provincia;
-                modelo.Canton = dato.Canton;
-                modelo.Distrito = dato.Distrito;
-                modelo.Estado = dato.Estado;
-
-                ViewBag.ListaProvincias = CargaProvincias();
-                ViewBag.ListaCantones = CargaCanton(dato.Provincia);
-                ViewBag.ListaDistritos = CargaDistrito(dato.Provincia, dato.Canton);
-                ViewBag.ListaTiposIdentificacion = tiposIdentificacion.ConsultarTipoIdentificacion();
-                return View(modelo);
+                var datastring = result.Content.ReadAsStringAsync().Result;
+                cliente = JsonConvert.DeserializeObject<Cliente>(datastring);
             }
-            catch (Exception)
+            if (cliente == null)
             {
-
-                throw;
+                bitacora.AgregarBitacora("Cliente", "Edit", "No se encontro", Session["US"].ToString(), 2);
+                return HttpNotFound();
             }
-          
+            await ObtenerProvincias();
+            await ObtenerTipoIdentificaciones();
+            var cantones = await ObtenerCantones(cliente.Provincia);
+            var distritos = await ObtenerDistritos(cliente.Provincia,cliente.Canton);
+            ViewBag.Cantones = new SelectList(cantones, "Canton","Nombre");
+            ViewBag.Distritos = new SelectList(distritos, "Distrito", "Nombre");
+            return View(cliente);
         }
 
-        // POST: Cliente/Editar/5
+        // POST: Cliente/Edit/5
         [HttpPost]
-        public ActionResult Editar(int id, Cliente cliente)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(Cliente cliente)
         {
-            try
+            ApiCall api = new ApiCall(Session);
+            if (ModelState.IsValid)
             {
-
-                if (!Utilerias.ValidarCorreo(cliente.Correo))
-                {
-
-                }
-                clsCliente ObjCliente = new clsCliente();
-                bool Resultado = ObjCliente.ActualizarCliente(cliente.IdCliente,cliente.IdTipoIdentificacion,
-                        cliente.Nombre, cliente.Apellido1, cliente.Apellido2, cliente.Correo, cliente.Telefono,
-                        cliente.Provincia, cliente.Canton, cliente.Distrito);
-
-                if (Resultado)
-                {
+                var result = await api.PutAsync("/api/Cliente/" + cliente.IdCliente, cliente);
+                if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
-                }
-                else
-                {
-                    clsTipoIdentificacion tiposIdentificacion = new clsTipoIdentificacion();
-                    ViewBag.ListaSexo = new SelectList(new[] {
-                                       new SelectListItem { Value = "H", Text = "Hombre" },
-                                       new SelectListItem { Value = "M", Text = "Mujer" }
-                                                                   }, "Value", "Text");
-                    ViewBag.ListaEstados = new SelectList(new[] {
-                                   new SelectListItem { Value = "1", Text = "Activo" },
-                                   new SelectListItem { Value = "0", Text = "Inactivo" }
-                                                               }, "Value", "Text");
-                    ViewBag.ListaProvincias = CargaProvincias();
-                    ViewBag.ListaTiposIdentificacion = tiposIdentificacion.ConsultarTipoIdentificacion();
-                    return View("Editar");
-                }
             }
-            catch
-            {
-                return View();
-            }
+            await ObtenerProvincias();
+            await ObtenerTipoIdentificaciones();
+            var cantones = await ObtenerCantones(cliente.Provincia);
+            var distritos = await ObtenerDistritos(cliente.Provincia, cliente.Canton);
+            ViewBag.Cantones = new SelectList(cantones, "Canton", "Nombre");
+            ViewBag.Distritos = new SelectList(distritos, "Distrito", "Nombre");
+            bitacora.AgregarBitacora("Cliente", "Edit", "No se edito", Session["US"].ToString(), 2);
+            return View(cliente);
         }
 
-        // POST: Cliente/Eliminar/5
-        public ActionResult Eliminar(int id)
+        // GET: Cliente/Delete/5
+        public async Task<ActionResult> Delete(int id)
         {
-            try
+            ApiCall api = new ApiCall(Session);
+            var result = await api.GetAsync("/api/Cliente/" + id);
+            Cliente cliente = null;
+            if (result.IsSuccessStatusCode)
             {
-                clsCliente objcliente = new clsCliente();
-                bool Resultado = objcliente.EliminarCliente(id);
-
-                if (Resultado)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }   
-
+                var datastring = result.Content.ReadAsStringAsync().Result;
+                cliente = JsonConvert.DeserializeObject<Cliente>(datastring);
             }
-            catch
+            if (cliente == null)
             {
-                return View();
+                bitacora.AgregarBitacora("Cliente", "Delete", "No se encontro", Session["US"].ToString(), 2);
+                return HttpNotFound();
             }
+            List<Cliente> clientes = await LLenarDatos(new List<Cliente>() { cliente });
+            cliente = clientes.First();
+            return View(cliente);
         }
-        /// <summary>
-        /// Obtiene Provincias
-        /// </summary>
-        /// <returns></returns>
-        public List<ProvinciasResult> CargaProvincias()
+
+        // POST: Cliente/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            List<ProvinciasResult> provincias = Informacion.ObtenerProvincias();
+            ApiCall api = new ApiCall(Session);
+            var result = await api.DeleteAsync("/api/Cliente/" + id);
+            if (result.IsSuccessStatusCode)
+                return RedirectToAction("Index");
+            bitacora.AgregarBitacora("Cliente", "Delete", "No se elimino", Session["US"].ToString(), 2);
+            return HttpNotFound();
+        }
+
+        private async Task<List<Provincia>> ObtenerProvincias()
+        {
+            ApiCall api = new ApiCall(Session);
+            List<Provincia> provincias = new List<Provincia>();
+            var resultclient = await api.GetAsync("/api/Provincia");
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                provincias = JsonConvert.DeserializeObject<List<Provincia>>(datastring);
+            }
+            var provinciastemporal = new List<Provincia>(provincias);
+            provinciastemporal.Insert(0, new Provincia { Cod = '0', Nombre = "--Seleccione--" });
+            ViewBag.Provincias = new SelectList(provinciastemporal, "Cod", "Nombre");
             return provincias;
         }
-        /// <summary>
-        /// Obtiene Cantones
-        /// </summary>
-        /// <param name="provincia"></param>
-        /// <returns></returns>
-        public List<CantonesResult> CargaCanton(char provincia)
+
+        private async Task<List<TipodeIdentificacion>> ObtenerTipoIdentificaciones()
         {
-            List<CantonesResult> cantones = Informacion.ObtenerCantones(provincia);
+            ApiCall api = new ApiCall(Session);
+            List<TipodeIdentificacion> tipoIdentificacions = new List<TipodeIdentificacion>();
+            var resultclient = await api.GetAsync("/api/TipoIdentificacion");
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                tipoIdentificacions = JsonConvert.DeserializeObject<List<TipodeIdentificacion>>(datastring);
+            }
+            ViewBag.TiposIdentificaciones = new SelectList(tipoIdentificacions.FindAll(c => c.Estado), "IdTipoIdentificacion", "TipoIdentificacion");
+            return tipoIdentificacions;
+        }
+
+        private async Task<List<Cantones>> ObtenerCantones(char provincia)
+        {
+            ApiCall api = new ApiCall(Session);
+            List<Cantones> cantones = new List<Cantones>();
+            var resultclient = await api.GetAsync("/api/Canton/"+ provincia);
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                cantones = JsonConvert.DeserializeObject<List<Cantones>>(datastring);
+            }
             return cantones;
         }
-        /// <summary>
-        /// Obtiene Distritos
-        /// </summary>
-        /// <param name="provincia"></param>
-        /// <param name="canton"></param>
-        /// <returns></returns>
-        public List<DistritosResult> CargaDistrito(char provincia, string canton)
+
+        private async Task<List<Cantones>> ObtenerCantones()
         {
-            List<DistritosResult> distritos = Informacion.ObtenerDistritos(provincia, canton);
+            ApiCall api = new ApiCall(Session);
+            List<Cantones> cantones = new List<Cantones>();
+            var resultclient = await api.GetAsync("/api/Canton");
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                cantones = JsonConvert.DeserializeObject<List<Cantones>>(datastring);
+            }
+            return cantones;
+        }
+       
+        private async Task<List<Distritos>> ObtenerDistritos()
+        {
+            ApiCall api = new ApiCall(Session);
+            List<Distritos> distritos = new List<Distritos>();
+            var resultclient = await api.GetAsync("/api/Distrito");
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                distritos = JsonConvert.DeserializeObject<List<Distritos>>(datastring);
+            }
             return distritos;
         }
-        /// <summary>
-        /// Cargar Cantones hacia la pantalla
-        /// </summary>
-        /// <param name="provincia"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonResult CargaCantones(char provincia)
+
+        private async Task<List<Distritos>> ObtenerDistritos(char provincia, string canton)
         {
-            List<CantonesResult> cantones = Informacion.ObtenerCantones(provincia);
-            return Json(cantones, JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Cargar Disttritos hacia la pantalla
-        /// </summary>
-        /// <param name="provincia"></param>
-        /// <param name="canton"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonResult CargaDistritos(char provincia, string canton)
-        {
-            List<DistritosResult> distritos = Informacion.ObtenerDistritos(provincia, canton);
-            return Json(distritos, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        public JsonResult ConsultaPersona(string identificacion)
-        {
-            string baseUrl = ConfigurationManager.AppSettings["URL_API"];
-
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            var contentType = new MediaTypeWithQualityHeaderValue("application/json");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(contentType);
-            JWT jwt = new JWT();
-            jwt.Token=HttpContext.Session["token"].ToString();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",jwt.Token);
-
-            DatoPersona personModel = new DatoPersona();
-            personModel.Identificacion = identificacion;
-
-            string stringData = JsonConvert.SerializeObject(personModel);
-            var contentData = new StringContent(stringData, System.Text.Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = client.PostAsync("/api/consultas/ObtenerIdentificacion", contentData).Result;
-            string stringPersona = response.Content.ReadAsStringAsync().Result;
-            List<Persona> data = JsonConvert.DeserializeObject<List<Persona>>(stringPersona);
-
-            if (!response.IsSuccessStatusCode)
+            ApiCall api = new ApiCall(Session);
+            List<Distritos> distritos = new List<Distritos>();
+            var resultclient = await api.GetAsync("/api/Distrito/" + provincia + "/" + canton);
+            if (resultclient.IsSuccessStatusCode)
             {
-                string Message = "Unauthorized!";
-                return Json(Message, JsonRequestBehavior.AllowGet);
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                distritos = JsonConvert.DeserializeObject<List<Distritos>>(datastring);
             }
-            else
-            {
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
+            return distritos;
         }
 
+        [HttpPost]
+        public async Task<JsonResult> CargaCantones(char provincia)
+        {
+            var cantones = await ObtenerCantones(provincia);
+            return Json(cantones);
+        }
 
+        [HttpPost]
+        public async Task<JsonResult> CargaDistritos(char provincia, string canton)
+        {
+            var distritos = await ObtenerDistritos(provincia, canton);
+            return Json(distritos);
+        }
+
+        private async Task<Persona> ObtenerPersona(string identificacion)
+        {
+            ApiCall api = new ApiCall(Session);
+            Persona persona = new Persona();
+            var resultclient = await api.GetAsync("/api/Persona/" + identificacion);
+            if (resultclient.IsSuccessStatusCode)
+            {
+                var datastring = resultclient.Content.ReadAsStringAsync().Result;
+                persona = JsonConvert.DeserializeObject<Persona>(datastring);
+            }
+            return persona;
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ConsultaPersona(string identificacion)
+        {
+            var persona = await ObtenerPersona(identificacion);
+            return Json(persona);
+        }
+
+        public async Task<List<Cliente>> LLenarDatos(List<Cliente> clientes)
+        {
+            var tiposIdentificaciones = await ObtenerTipoIdentificaciones();
+            var provincias = await ObtenerProvincias();
+            var cantones = await ObtenerCantones();
+            var distritos = await ObtenerDistritos();
+            clientes.ForEach(cliente =>
+            {
+                cliente.Canton_Nombre = cantones.First(c => c.Canton.Equals(cliente.Canton)).Nombre;
+                cliente.Distrito_Nombre = distritos.First(d => d.Distrito.Equals(cliente.Distrito)).Nombre;
+                cliente.Provincia_Nombre = provincias.First(p => p.Cod.Equals(cliente.Provincia)).Nombre;
+                cliente.TipoIdentificacion_Nombre = tiposIdentificaciones.First(t => t.IdTipoIdentificacion.Equals(cliente.IdTipoIdentificacion)).TipoIdentificacion;
+            });
+            return clientes;
+        }
     }
 }

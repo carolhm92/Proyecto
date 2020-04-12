@@ -40,7 +40,7 @@ namespace Consola.Controllers
                     //var Encriptado = Seguridad.Encriptar(model.Password);
                     //var Desencriptado = Seguridad.Desencriptar(Encriptado);
                     var contraseña = Seguridad.Encriptar(model.Password);
-                    var usuario = Objusuario.ConsultarUsuario(model.Usuario, contraseña).Where(x => x.Estado == true);
+                    var usuario = Objusuario.ExisteUsuario(model.Usuario, contraseña).Where(x => x.Estado == true);
 
                     if (usuario.Count() > 0)
                     {

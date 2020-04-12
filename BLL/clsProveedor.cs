@@ -38,12 +38,12 @@ namespace BLL
             }
 
         }
-        public bool AgregarProveedor(int IdProveedor, string nombreProveedor, char Provincia, string Canton, string Distrito, string correo,string telefono)
+        public bool AgregarProveedor(string nombreProveedor, char Provincia, string Canton, string Distrito, string correo,string telefono)
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                int respuesta = Convert.ToInt32(dc.AgregarProveedor(IdProveedor,nombreProveedor,Provincia,Canton,Distrito,correo,telefono));
+                int respuesta = Convert.ToInt32(dc.AgregarProveedor(nombreProveedor,Provincia,Canton,Distrito,correo,telefono));
 
                 return respuesta == 0;
             }
@@ -71,7 +71,7 @@ namespace BLL
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                dc.EliminaCliente(IdProveedor);
+                dc.EliminaProveedor(IdProveedor);
                 return true;
             }
             catch 

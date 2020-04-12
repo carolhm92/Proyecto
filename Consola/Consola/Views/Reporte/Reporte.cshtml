@@ -1,0 +1,8 @@
+﻿@using ReportViewerForMvc;
+@{
+    Layout = "~/Views/Shared/_LayoutVacio.cshtml";
+}
+
+<div class="col-md-12">
+    @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, htmlAttributes: new { @class = "col-md-12", style = "max-width: 100%; width:100%;" })
+</div>

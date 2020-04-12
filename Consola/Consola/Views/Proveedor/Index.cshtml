@@ -29,9 +29,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Correo)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
         <th></th>
     </tr>
 
@@ -41,22 +38,19 @@
             @Html.DisplayFor(modelItem => item.NombreProveedor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Provincia)
+            @Html.DisplayFor(modelItem => item.Provincia_Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Canton)
+            @Html.DisplayFor(modelItem => item.Canton_Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Distrito)
+            @Html.DisplayFor(modelItem => item.Distrito_Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telefono)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdProveedor }) |

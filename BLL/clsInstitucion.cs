@@ -38,12 +38,12 @@ namespace BLL
             }
 
         }
-        public bool AgregarInstitucion(int IdInstitucion, string Institucion,int IdTipoIdentificacion, string Identificacion,string Telefono, string Direccion) 
+        public bool AgregarInstitucion(string Institucion,int IdTipoIdentificacion, string Identificacion,string Telefono, string Direccion) 
         {
             try
             {
                 DatosDataContext dc = new DatosDataContext();
-                dc.AgregarInstitucion(IdInstitucion, Institucion, IdTipoIdentificacion, Identificacion, Telefono, Direccion);
+                dc.AgregarInstitucion(Institucion, IdTipoIdentificacion, Identificacion, Telefono, Direccion);
                 return true;
             }
             catch 
